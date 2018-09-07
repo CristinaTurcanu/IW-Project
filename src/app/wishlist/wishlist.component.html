@@ -1,0 +1,29 @@
+<div class="wishlist">
+    <h3>Wishlist</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Name</th>
+          <th scope="col">Status</th>
+          <th scope="col">Price</th>
+          <th scope="col">Add to cart</th>
+          <th scope="col">Remove</th>
+        </tr>
+      </thead>
+
+      <tbody id="wishlistContainer">
+        <tr *ngFor="let product of wishlist.products">
+            <th scope="row">
+            <img src="../../assets/images/products/frn14.jpg">
+            </th>
+            <td>{{ product.name }}</td>
+            <td hidden>{{ product.color }}</td>
+            <td>{{ product.availability }}</td>
+            <td>{{ product.price }}</td>
+            <td class="add" (click)="addToCart(this.product)">Add</td>
+            <td class="del" (click)="deleteProduct(this.product)">X</td>
+        </tr>;
+      </tbody>
+    </table>
+  </div>

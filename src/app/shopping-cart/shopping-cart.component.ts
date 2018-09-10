@@ -1,5 +1,6 @@
+import { destroyView } from '@angular/core/src/view/view';
 import { Product } from './../model/product.model';
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from './shopping-cart.service';
 
 
@@ -8,7 +9,7 @@ import { ShoppingCartService } from './shopping-cart.service';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit, OnChanges {
+export class ShoppingCartComponent implements OnInit {
   cart = {products: []};
   product: Product[];
 
@@ -22,14 +23,7 @@ export class ShoppingCartComponent implements OnInit, OnChanges {
 
   deleteProduct(product) {
     this.cartService.deleteProduct(product);
-    this.cartService.updateCart();
     this.cartService.getProducts();
   }
-  ngOnChanges() {
-    this.cartService.getProducts();
 
-  }
-  changeQuantity(quantity) {
-    console.log(quantity);
-  }
 }

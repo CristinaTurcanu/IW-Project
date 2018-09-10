@@ -1,0 +1,114 @@
+
+.card {
+  max-width: 363px;
+  margin-top: 12px;
+  cursor: pointer;
+  max-height: 460px;
+}
+.card:hover {
+  box-shadow: 1px 2px 3px 2px #ddd;
+  transform: scale(1.03);
+}
+img {
+  width: 330px;
+  height: 330px;
+  margin: 0 auto;
+  text-align: center;
+}
+.products .card .description {
+  display: grid;
+  grid-template-columns: 45% 25% 20%;
+  position: relative;
+  grid-column-gap: 20px;
+}
+.card .description p{
+  margin-bottom: 0;
+}
+.card .description a {
+  text-decoration: none;
+}
+.card .description a .name {
+  font-size: 22px;
+  text-transform: capitalize;
+  color: #666;
+  font-family: 'Pacifico', sans-serif;
+}
+.card .description a .name:hover {
+  color: rgb(68, 61, 46);
+}
+.card .description .price {
+  font-size: 18px;
+  color: rgb(184, 153, 91);
+  font-weight: bold;
+}
+.card .description .availability {
+  color: #666;
+  font-size: 18px;
+}
+.card .description .descr {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 75ch;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.card .shopping {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.card .shopping .add{
+  max-height: 30px;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-top: 2px solid #999;
+  background-color: #fff;
+}
+.card .shopping .added::after {
+  content: "- Added";
+}
+.card .shopping .add:hover {
+  color: #333;
+  font-weight: bold;
+}
+.card .shopping select {
+  height: 30px;
+  font-size: 15px;
+}
+.card:hover .overlay {
+  opacity: 1;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  height: 330px;
+  width: 100%;
+  opacity: 0;
+  transition: .4s ease;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.card:hover .overlay {
+  opacity: 1;
+}
+.overlay .fa-heart{
+  color: rgb(172, 115, 139);
+  font-size: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.overlay .fa-heart:hover,{
+  color: rgb(172, 90, 125);
+}
+.added {
+  opacity: 1;
+}

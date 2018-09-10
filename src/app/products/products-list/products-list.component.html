@@ -1,0 +1,24 @@
+<router-outlet></router-outlet>
+  <div class="card" data-id="{{ product.id }}">
+      <img src="../../../assets/images/products/frn1.jpg">
+      <div class="description">
+          <a href="#"><p class="name" routerLink="/{{product.id}}">{{ product.name }}</p></a>
+          <p class="price">{{ product.price }}</p>
+          <p class="availability">{{ product.availability }}</p>
+          <p class="color" hidden>{{ product.color }}</p>
+          <p class="descr">{{ product.description }}</p>
+      </div>
+      <div class="shopping">
+        <button class="add" (click)="addToCart(this.product)">Add to cart</button>
+        <select class="form-control" [(ngModel)]="this.product.quantity">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="overlay">
+          <i class="fa fa-heart" (click)="addToWishlist(this.product)"></i>
+      </div>
+  </div>

@@ -26,12 +26,13 @@ export class ShoppingCartService {
   private findProductIndex(product: Product[]) {
     return this.cart.products.indexOf(product);
   }
-  put(product, changes) {
-    Object.assign(this.cart.products[this.findProductIndex(product)], changes);
-    return this.updateCart();
-  }
+  // put(product, changes) {
+  //   Object.assign(this.cart.products[this.findProductIndex(product)], changes);
+  //   return this.updateCart();
+  // }
   deleteProduct(product: Product[]) {
     this.cart.products.splice(this.findProductIndex(product), 1);
     return this.updateCart();
   }
+
 }

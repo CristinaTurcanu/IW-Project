@@ -20,11 +20,11 @@ export class WishlistComponent implements OnInit {
   }
   addToCart(product) {
     this.cartService.addProduct(product);
+
   }
   deleteProduct(product) {
     this.wishService.deleteProduct(product);
     this.wishService.updateWishlist();
-    this.wishService.getProducts();
   }
 
 }

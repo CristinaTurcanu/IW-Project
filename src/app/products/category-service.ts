@@ -15,4 +15,7 @@ export class CategoryService {
   getProducts(cid) {
     return this.http.get(this.apiCategories + '/' + cid + '/' + 'furnitures');
   }
+  getProduct(cid, fid) {
+    return this.http.get(this.apiCategories + '/' + cid + '/' + 'furnitures' + fid);
+  }
 }

@@ -1,5 +1,4 @@
 import { CategoryService } from './../category-service';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,20 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  @Input() products$;
-  categories$;
+  @Input() category: {name: string, id: number};
+  products$;
 
-  constructor(private categoryService: CategoryService) {
-    this.categories$ = categoryService.getCategories();
-  }
+  constructor(private categoryService: CategoryService) {}
 
-  ngOnInit() {
-    this.categoryService.getCategories()
-      .subscribe();
-  }
+  ngOnInit() {}
 
   getProducts(cid) {
     this.categoryService.getProducts(cid)
     .subscribe(product => this.products$ = product);
   }
+
+
 }

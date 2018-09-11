@@ -26,7 +26,7 @@
           <td>
               <input type="number" class="inputQuantity" [(ngModel)]="this.product.quantity" min="1" max="5">
           </td>
-          <td class="productTotal" #productTotal>{{ product.price * this.product.quantity | number: '1.1-2' }}</td>
+          <td class="productTotal">{{ product.price * this.product.quantity | number: '1.1-2' }}</td>
           <td class="del" (click)="deleteProduct(this.product)">X</td>
       </tr>
     </tbody>

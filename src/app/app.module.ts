@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { AccountComponent } from './account/account.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductDetailsComponent } from './products/products-list/product-details/product-details.component';
+// import { ProductDetailGuard } from './products/products-list/product-details/product-detail.guard';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { ProductDetailsComponent } from './products/products-list/product-detail
     WishlistComponent,
     AccountComponent,
     ProductsListComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    // ProductDetailGuard
   ],
   imports: [
     BrowserModule,

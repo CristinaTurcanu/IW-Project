@@ -1,8 +1,7 @@
-<router-outlet></router-outlet>
-  <div class="card" data-id="{{ product.id }}">
-      <img src="../../../assets/images/products/frn1.jpg">
+  <div class="card" data-id="{{ product.id }}" (click)="getProduct()">
+      <img src="../../../assets/images/products/frn140.jpg">
       <div class="description">
-          <a href="#"><p class="name" routerLink="/{{product.id}}">{{ product.name }}</p></a>
+          <a href="#" class="name" [routerLink]="['/products', product.id]">{{ product.name }}</a>
           <p class="price">{{ product.price }}</p>
           <p class="availability">{{ product.availability }}</p>
           <p class="color" hidden>{{ product.color }}</p>

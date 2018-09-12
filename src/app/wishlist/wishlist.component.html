@@ -20,8 +20,7 @@
             <td>{{ product.name }}</td>
             <td hidden>{{ product.color }}</td>
             <td>{{ product.availability }}</td>
-            <td>{{ product.price }}</td>
-            <td hidden>{{ product.quantity }}</td>
+            <td>{{ product.price|currency:'USD':'symbol' }}</td>
             <td class="add" (click)="addToCart(this.product)">Add</td>
             <td class="del" (click)="deleteProduct(this.product)">X</td>
         </tr>;

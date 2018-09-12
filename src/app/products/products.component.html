@@ -1,9 +1,8 @@
 <h1>Choose your favourite product</h1>
 <section class="products row">
-  <div class="categories col-3 list-group">
+  <div class="categories col-3">
     <app-category-list
       *ngFor="let category of categories$ | async"
-      class="list-group-item"
       attr.data-id={{category.id}}
       [category]="category"
       (click)="getProducts(category.id)"></app-category-list>
@@ -12,7 +11,11 @@
     <app-products-list
       *ngFor="let product of products$"
       [product]="product"
-      attr.data-id={{product.id}}>
+      attr.data-id={{product.id}}
+      (productReceived)="showDetails($event)"
+      (addedToCart)="addToCart($event)"
+      (addedToWishlist)="addToWishlist($event)">
+      <!-- (click)="getProduct(product.furniture_category_id, product.id)" -->
     </app-products-list>
   </div>
 </section>

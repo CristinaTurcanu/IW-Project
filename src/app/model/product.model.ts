@@ -1,5 +1,6 @@
 export interface Product {
   id: number;
+  furniture_category_id: number;
   img: string;
   name: string;
   price: number;

@@ -1,0 +1,67 @@
+<div class='card'
+     *ngIf='product'>
+  <div class='card-header'>
+    {{pageTitle + ': ' + product.name}}
+  </div>
+
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-8'>
+        <div class='row'>
+          <div class='col-md-4 field'>Name:</div>
+          <div class='col-md-8 details'>{{product.name}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4 field'>Description:</div>
+          <div class='col-md-8 details'>{{product.description}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4 field'>Color:</div>
+          <div class='col-md-8 details'>{{product.color}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4 field'>Availability:</div>
+          <div class='col-md-8 details'>{{product.availability}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4 field'>Price:</div>
+          <div class='col-md-8 details'>{{product.price|currency:'USD':'symbol'}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4 field'>Select quantity:</div>
+          <div class='col-md-8 details'>
+            <select [(ngModel)]="defaultOption" (ngModelChange)="onQuantitySelected($event)">
+              <option *ngFor="let option of options" [value]="option.value">{{ option.value }}</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class='row'>
+          <div class='col-md-4 field'>Do you like it?</div>
+          <div class='col-md-8 addBtn'>
+            <button class='btn btn-outline-secondary'
+            (click)='addToCart(this.product)'> Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-md-4'>
+        <img class='center-block img-responsive'
+             src='../../assets/images/products/frn14.jpg'
+             [style.width.px]='400'
+             [title]='product.name'>
+      </div>
+    </div>
+  </div>
+
+  <div class='card-footer'>
+    <button class='btn btn-outline-secondary'
+            (click)='onBack()'
+            style='width:80px'>
+      <i class='fa fa-chevron-left'></i> Back
+    </button>
+  </div>
+</div>

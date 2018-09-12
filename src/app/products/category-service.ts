@@ -1,8 +1,5 @@
-import { Product } from './../model/product.model';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +15,7 @@ export class CategoryService {
   getProducts(cid) {
     return this.http.get(this.apiCategories + '/' + cid + '/' + 'furnitures');
   }
-  getProduct(id: number): Observable<Product | undefined> {
-    return this.getProducts(cid).pipe(
-      map((products: Product[]) => products.find(p => p.id === id))
-    );
+  getProduct(cid, fid) {
+    return this.http.get(this.apiCategories + '/' + cid + '/' + 'furnitures/' + fid);
   }
 }

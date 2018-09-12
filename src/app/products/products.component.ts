@@ -1,7 +1,9 @@
+import { Router } from '@angular/router';
 import { Product } from './../model/product.model';
-import { Params, ActivatedRoute } from '@angular/router';
 import { CategoryService } from './category-service';
 import { Component, OnInit } from '@angular/core';
+import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
+import { WishlistService } from '../wishlist/wishlist.service';
 
 @Component({
   selector: 'app-products',
@@ -9,22 +11,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  prod: any;
+  product: {};
   products$;
   categories$;
 
   constructor(private categoryService: CategoryService,
-              private route: ActivatedRoute) {
+              private cartService: ShoppingCartService,
+              private wishService: WishlistService,
+              private router: Router) {
     this.categories$ = categoryService.getCategories();
   }
 
   ngOnInit() {
     this.categoryService.getCategories()
     .subscribe();
+    this.getProducts(131);
   }
 
   getProducts(cid) {
     this.categoryService.getProducts(cid)
-    .subscribe(product => this.products$ = product);
+    .subscribe(products => this.products$ = products);
+  }
+
+  showDetails (product: Product) {
+    this.router.navigate(['/products', product.furniture_category_id, product.id]);
+  }
+
+  addToCart (product: Product) {
+    this.cartService.addProduct(product);
+  }
+
+  addToWishlist (product: Product) {
+    this.wishService.addProduct(product);
   }
 }

@@ -1,9 +1,5 @@
 import { Product } from './../../model/product.model';
-import { Component, OnInit, Input } from '@angular/core';
-import { ShoppingCartService } from '../../shopping-cart/shopping-cart.service';
-import { WishlistService } from '../../wishlist/wishlist.service';
-import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from '../category-service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-products-list',
@@ -11,22 +7,42 @@ import { CategoryService } from '../category-service';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
-  @Input() product: Product;
+  @Input() product: any;
+  @Output() productReceived = new EventEmitter<Product>();
+  @Output() addedToCart = new EventEmitter<Product>();
+  @Output() addedToWishlist = new EventEmitter<Product>();
 
-  constructor(private cartService: ShoppingCartService,
-              private wishService: WishlistService,
-              private router: ActivatedRoute,
-              private categoryService: CategoryService) { }
+  options = [];
+  defaultOption: number;
+  alllowAddToWishlist = false;
 
-  ngOnInit() {}
+  constructor() { }
 
-  getProduct() {
-    console.log(this.product);
+  ngOnInit() {
+    this.options = [
+      {value: 1},
+      {value: 2},
+      {value: 3},
+      {value: 4},
+      {value: 5}
+    ];
+    this.defaultOption = 1;
   }
-  addToCart(product: Product[]) {
-    this.cartService.addProduct(product);
+
+  onQuantitySelected(value: number) {
+    this.product.quantity = +value;
   }
-  addToWishlist(product: Product[]) {
-    this.wishService.addProduct(product);
+
+  getProduct(product) {
+    this.productReceived.emit(product);
   }
+
+  addToCart(product) {
+    this.addedToCart.emit(product);
+  }
+
+  addToWishlist(product) {
+    this.addedToWishlist.emit(product);
+  }
+
 }

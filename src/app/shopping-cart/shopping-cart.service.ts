@@ -6,29 +6,40 @@ import { Injectable } from '@angular/core';
 })
 export class ShoppingCartService {
   cart = {products: []};
+  product: Product;
+  addToCart = true;
 
   constructor() {
     this.cart = JSON.parse(localStorage.getItem('cart')) || this.cart;
   }
 
   getProducts() {
-    return [...this.cart.products];
+    return [this.cart.products];
   }
-  addProduct(product: Product[]) {
-    const prod = this.findProductIndex(product);
-    this.cart.products.push(product);
+  addProduct(product: Product) {
+    let prod = this.product;
+    for (prod of this.cart.products) {
+      if (prod.id === product.id) {
+          this.addToCart = false;
+          prod.quantity += product.quantity;
+      }
+    }
+    if (this.addToCart) {
+      this.cart.products.push(product);
+    }
     return this.updateCart();
   }
   updateCart() {
     localStorage.setItem('cart', JSON.stringify(this.cart));
 ​    return this.getProducts();
   }
-  findProductIndex(product: Product[]) {
+  findProductIndex(product) {
     return this.cart.products.indexOf(product);
   }
 
-  deleteProduct(product: Product[]) {
-    this.cart.products.splice(this.findProductIndex(product), 1);
-    return this.updateCart();
+  deleteProduct(id: number) {
+    this.cart.products = this.cart.products
+      .filter(product => product.id !== id);
+  console.log(this.cart.products);
   }
 }

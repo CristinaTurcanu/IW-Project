@@ -1,9 +1,9 @@
 
 .card {
   max-width: 363px;
-  margin-top: 12px;
+  margin: 15px 0;
   cursor: pointer;
-  max-height: 460px;
+  max-height: 500px;
 }
 .card:hover {
   box-shadow: 1px 2px 3px 2px #ddd;
@@ -15,7 +15,7 @@ img {
   margin: 0 auto;
   text-align: center;
 }
-.products .card .description {
+.card .description {
   display: grid;
   grid-template-columns: 45% 25% 20%;
   position: relative;
@@ -27,14 +27,14 @@ img {
 .card .description a {
   text-decoration: none;
 }
-.card .description a .name {
+.card .description .name {
   font-size: 22px;
   text-transform: capitalize;
   color: #666;
   font-family: 'Pacifico', sans-serif;
 }
-.card .description a .name:hover {
-  color: rgb(68, 61, 46);
+.card .description .name:hover {
+  color: rgb(58, 52, 39);
 }
 .card .description .price {
   font-size: 18px;

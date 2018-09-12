@@ -1,0 +1,34 @@
+.card {
+  margin-top: 5rem;
+}
+.card-header {
+  font-size: 26px;
+}
+.card .field {
+  font-size: 20px;
+  font-family: 'Cabin', sans-serif;
+  padding: 5px 0;
+}
+.card .details {
+  text-align: justify;
+  font-size: 18px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  font-family: 'Cabin', sans-serif;
+}
+.card select,
+.card .addBtn button {
+  width: 120px;
+  background-color: #fff;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: 'Pacifico', sans-serif;
+  padding: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.card select {
+  padding: 2px;
+}

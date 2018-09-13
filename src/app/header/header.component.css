@@ -23,9 +23,13 @@ nav #navbar .nav-link{
 nav #navbar .nav-link i {
   padding: 0 0.6rem;
 }
-
-@media screen and (max-width: 700px){
-  nav{
-      height: 48px;
+nav .navbar-toggler .navbar-toggler-icon {
+  color: #444;
+  padding: 4px;
+}
+@media screen and (max-width: 705px) {
+  nav {
+    background-color: rgba(255, 255, 255, 0.9);
   }
 }
+

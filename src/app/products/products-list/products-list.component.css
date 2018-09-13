@@ -106,9 +106,10 @@ img {
   text-align: center;
 }
 
-.overlay .fa-heart:hover,{
+.overlay .fa-heart:hover{
   color: rgb(172, 90, 125);
 }
 .added {
   opacity: 1;
 }
+

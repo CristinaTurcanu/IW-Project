@@ -22,14 +22,15 @@ export class ShoppingCartComponent implements OnInit {
     this.getTotalSum();
   }
   getTotalSum() {
+    this.totalSum = 0;
     for (const prod of this.cart.products) {
       prod.total = prod.price * prod.quantity;
       this.totalSum += prod.total;
     }
+    return this.totalSum;
   }
   onQuantitySelected($event) {
     localStorage.setItem('cart', JSON.stringify(this.cart));
-    this.totalSum = 0;
     this.getTotalSum();
   }
   deleteProduct(product) {

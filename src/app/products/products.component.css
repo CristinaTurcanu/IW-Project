@@ -4,15 +4,15 @@
     margin: 0;
 }
 body {
-    height: 100vh;
-    position: relative;
+  height: 100vh;
+  position: relative;
 }
- h1 {
-    margin-top: 5rem;
-    font-size: 3.4rem;
-    color: #777;
-    text-align: center;
-    font-family: 'Cabin', sans-serif;
+h1 {
+  margin-top: 5rem;
+  font-size: 3.4rem;
+  color: #777;
+  text-align: center;
+  font-family: 'Cabin', sans-serif;
 }
 .categories {
   display: flex;
@@ -40,45 +40,21 @@ body {
   .cards {
       grid-template-columns: auto auto;
   }
-  .products .cards .card .description .name,
-  .products .cards .card .description .price {
-      font-size: 18px;
-  }
-  .products .cards .card .description .availability {
-      font-size: 15px;
-  }
 }
 @media screen and (max-width: 970px) {
-    h1 {
-        font-size: 33px;
-    }
-    .cards {
-        grid-template-columns: auto;
-    }
-    .products .cards .card .description .name,
-    .products .cards .card .description .price {
-        font-size: 16px;
-    }
-    .products .cards .card .description .availability {
-        font-size: 13px;
-    }
+  .categories {
+    margin: 5px 0;
+  }
+  h1 {
+      font-size: 33px;
+  }
+  .cards {
+      grid-template-columns: auto;
+  }
 }
 @media screen and (max-width: 670px) {
   .categories button {
     font-size: 20px;
     padding: 5px;
-  }
-  .products .cards .card {
-      max-width: 303px;
-      margin-top: 12px;
-      cursor: pointer;
-      max-height: 360px;
-  }
-  .products .cards .card .description .descr{
-      display: none;
-  }
-  .products .cards img {
-      width: 300px;
-      height: 300px;
   }
 }

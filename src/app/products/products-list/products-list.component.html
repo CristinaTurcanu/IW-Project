@@ -1,4 +1,4 @@
-<div class="card" data-id="{{ product.id }}">
+<div class="card" data-id="{{ product.id }}" *ngIf='product; else noProduct'>
   <img class="card-img-top" src="../../../assets/images/products/frn13.jpg">
 
     <div class="description">
@@ -21,3 +21,6 @@
       <i class="fa fa-heart" (click)="addToWishlist(this.product)"></i>
   </div>
 </div>
+<ng-template #noProduct>
+    <p>Sorry, no products to display here</p>
+</ng-template>

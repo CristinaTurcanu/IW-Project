@@ -28,7 +28,11 @@ export class ProductsListComponent implements OnInit {
     ];
     this.defaultOption = 1;
   }
-
+  checkStatus() {
+    if (this.product.availability === 'Out of Stock' || this.product.availability === 'Not Available') {
+      return true;
+    }
+  }
   onQuantitySelected(value: number) {
     this.product.quantity = +value;
   }

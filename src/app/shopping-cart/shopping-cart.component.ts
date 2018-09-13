@@ -1,5 +1,5 @@
 import { Product } from './../model/product.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from './shopping-cart.service';
 
 
@@ -11,6 +11,7 @@ import { ShoppingCartService } from './shopping-cart.service';
 export class ShoppingCartComponent implements OnInit {
   cart = {products: []};
   product: Product;
+  totalSum = 0;
 
   constructor(private cartService: ShoppingCartService) {
     this.cart = JSON.parse(localStorage.getItem('cart'));
@@ -18,12 +19,22 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.getProducts();
+    this.getTotalSum();
   }
-  onQuantitySelected(value: number) {
-    this.product.quantity = +value;
+  getTotalSum() {
+    for (const prod of this.cart.products) {
+      prod.total = prod.price * prod.quantity;
+      this.totalSum += prod.total;
+    }
+  }
+  onQuantitySelected($event) {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.totalSum = 0;
+    this.getTotalSum();
   }
   deleteProduct(product) {
     this.cartService.deleteProduct(product.id);
+    document.getElementById(product.id).style.display = 'none';
     this.cartService.updateCart();
   }
 }

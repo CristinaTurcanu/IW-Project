@@ -14,11 +14,10 @@ export class ShoppingCartService {
   }
 
   getProducts() {
-    return [this.cart.products];
+    return [...this.cart.products];
   }
   addProduct(product: Product) {
-    let prod = this.product;
-    for (prod of this.cart.products) {
+    for (const prod of this.cart.products) {
       if (prod.id === product.id) {
           this.addToCart = false;
           prod.quantity += product.quantity;
@@ -33,6 +32,7 @@ export class ShoppingCartService {
     localStorage.setItem('cart', JSON.stringify(this.cart));
 ​    return this.getProducts();
   }
+
   findProductIndex(product) {
     return this.cart.products.indexOf(product);
   }
@@ -40,6 +40,5 @@ export class ShoppingCartService {
   deleteProduct(id: number) {
     this.cart.products = this.cart.products
       .filter(product => product.id !== id);
-  console.log(this.cart.products);
   }
 }

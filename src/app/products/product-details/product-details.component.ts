@@ -1,3 +1,4 @@
+import { Product } from './../../model/product.model';
 import { CategoryService } from './../category-service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,6 +16,7 @@ export class ProductDetailsComponent implements OnInit {
   pageTitle = 'Product Detail';
   options = [];
   defaultOption: number;
+  message = '';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -43,11 +45,20 @@ export class ProductDetailsComponent implements OnInit {
       product => this.product = product
     );
   }
+  checkStatus() {
+    if (this.product.availability === 'Out of Stock' || this.product.availability === 'Not Available') {
+      return true;
+    }
+  }
   onQuantitySelected(value: number) {
     this.product.quantity = +value;
   }
-  addToCart() {
-    this.cartService.addProduct(this.product);
+  addToCart(product: Product) {
+    if (!product.quantity) {
+      this.product.quantity = 1;
+    }
+    this.cartService.addProduct(product);
+    this.message = 'You added ' + this.product.quantity + ' piece(s)';
   }
   onBack() {
     this.router.navigate(['/products']);

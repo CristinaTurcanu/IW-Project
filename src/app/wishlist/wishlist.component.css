@@ -29,6 +29,9 @@
 .table tbody tr .add {
   color: rgb(82, 110, 56);
 }
+.deleted {
+  display: none;
+}
 @media screen and (max-width: 1400px) {
   .wishlist {
       width: 90%;

@@ -14,6 +14,8 @@ export class ProductsComponent implements OnInit {
   product: {};
   products$;
   categories$;
+  pageTitle = '';
+  message = 'were added to cart';
 
   constructor(private categoryService: CategoryService,
               private cartService: ShoppingCartService,
@@ -38,10 +40,15 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart (product: Product) {
+    if (product.quantity === undefined) {
+      product.quantity = 1;
+    }
     this.cartService.addProduct(product);
+    this.pageTitle = product.quantity + ' piece(s) of ' +  product.name + ' ' + this.message;
   }
 
   addToWishlist (product: Product) {
+    product.quantity = 1;
     this.wishService.addProduct(product);
   }
 }

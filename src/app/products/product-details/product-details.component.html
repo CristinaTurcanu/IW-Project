@@ -3,7 +3,6 @@
   <div class='card-header'>
     {{pageTitle + ': ' + product.name}}
   </div>
-
   <div class='card-body'>
     <div class='row'>
       <div class='col-md-8'>
@@ -42,15 +41,19 @@
           <div class='col-md-4 field'>Do you like it?</div>
           <div class='col-md-8 addBtn'>
             <button class='btn btn-outline-secondary'
-            (click)='addToCart(this.product)'> Add to cart
+                    (click)='addToCart(this.product)'
+                    [disabled]="checkStatus(product)"> Add to cart
             </button>
           </div>
+        </div>
+        <div class="row">
+         <h4 class="field">{{ message }}</h4>
         </div>
       </div>
 
       <div class='col-md-4'>
         <img class='center-block img-responsive'
-             src='../../assets/images/products/frn14.jpg'
+             src='../../assets/images/products/frn13.jpg'
              [style.width.px]='400'
              [title]='product.name'>
       </div>

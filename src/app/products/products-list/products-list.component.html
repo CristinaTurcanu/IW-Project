@@ -1,5 +1,5 @@
 <div class="card" data-id="{{ product.id }}">
-  <img class="card-img-top" src="../../../assets/images/products/frn14.jpg">
+  <img class="card-img-top" src="../../../assets/images/products/frn13.jpg">
 
     <div class="description">
         <!-- <a class="name" [routerLink]="['/products', product.furniture_category_id, product.id]">{{ product.name }}</a> -->
@@ -11,7 +11,7 @@
     </div>
 
     <div class="shopping">
-      <button class="add" (click)="addToCart(product)">Add to cart</button>
+      <button class="add" (click)="addToCart(product)" [disabled]="checkStatus(product)">Add to cart</button>
       <select [(ngModel)]="defaultOption" (ngModelChange)="onQuantitySelected($event)">
         <option *ngFor="let option of options" [value]="option.value">{{ option.value }}</option>
       </select>

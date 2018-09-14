@@ -1,7 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { StorageServiceModule } from 'angular-webstorage-service';
@@ -17,6 +17,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { AccountComponent } from './account/account.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { FormComponent } from './account/form/form.component';
+import { ArrivalsComponent } from './home/arrivals/arrivals.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +32,17 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
     WishlistComponent,
     AccountComponent,
     ProductsListComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    FormComponent,
+    ArrivalsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    StorageServiceModule
+    StorageServiceModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { CategoryService } from './../category-service';
+import { ServerService } from '../../server-service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -10,12 +10,12 @@ export class CategoryListComponent implements OnInit {
   @Input() category: {name: string, id: number};
   products$;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private serverService: ServerService) {}
 
   ngOnInit() {}
 
   getProducts(cid) {
-    this.categoryService.getProducts(cid)
+    this.serverService.getProducts(cid)
     .subscribe(product => this.products$ = product);
   }
 

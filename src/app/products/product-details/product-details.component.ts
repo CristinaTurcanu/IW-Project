@@ -1,5 +1,5 @@
-import { Product } from './../../model/product.model';
-import { CategoryService } from './../category-service';
+import { Product } from '../../model/product.model';
+import { ServerService } from '../../server-service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShoppingCartService } from '../../shopping-cart/shopping-cart.service';
@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private categoryService: CategoryService,
+              private serverService: ServerService,
               private cartService: ShoppingCartService) {}
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class ProductDetailsComponent implements OnInit {
     this.defaultOption = 1;
   }
   getProduct(cid, fid) {
-    this.categoryService.getProduct(cid, fid).subscribe(
+    this.serverService.getProduct(cid, fid).subscribe(
       product => this.product = product
     );
   }

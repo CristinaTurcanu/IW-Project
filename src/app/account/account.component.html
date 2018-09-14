@@ -1,29 +1,10 @@
-<div class="left-half">
-    <img src="images/login.jpg" alt="Interior">
-</div>
-<div class="right-half">
-    <form action="">
-        <h2>Create an Accout</h2>
-        <div class="form-group">
-            <label for="name">Full name:</label>
-            <input type="name" class="form-control" id="name">
-        </div>
-        <div class="form-group">
-            <label for="email">Email address:</label>
-            <input type="email" class="form-control" id="email">
-        </div>
-        <div class="form-group">
-            <label for="pass">Password:</label>
-            <input type="password" class="form-control" id="pass">
-        </div>
-        <div class="form-group">
-            <label for="confirm">Confirm Password:</label>
-            <input type="password" class="form-control" id="confirm">
-        </div>
-        <label class="container"> I understand and agree to the  <a href=""> Terms of Service</a> and <a href=""> Privacy Policy</a>.
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-        </label>
-        <button type="submit" class="btn">Create my Account</button>
-    </form>
+<div class="container-fluid">
+  <div class="row">
+    <div class="left-half col-lg-5">
+      <img src="images/login.jpg" alt="Interior">
+    </div>
+    <div class="right-half col-lg-7 col-md-12">
+      <app-form></app-form>
+    </div>
+  </div>
 </div>

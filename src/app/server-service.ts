@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class ServerService {
   apiCategories = 'http://iw-internship.herokuapp.com/api/v1/furniture-categories';
 
   constructor(private http: HttpClient) {}

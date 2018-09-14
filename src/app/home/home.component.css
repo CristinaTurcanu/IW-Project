@@ -124,55 +124,7 @@ body {
 }
   /* New Arrivals
   -------------------- */
-  .arrivals {
-    padding: 20px 0;
-    width: 76%;
-    margin: 0 auto;
-  }
-  .arrivals img {
-    width: auto;
-    max-height: 320px;
-  }
-  .arrivals h1 {
-    padding: 10px 0;
-    font-size: 5.3rem;
-    color: #777;
-    text-align: center;
-    font-family: 'Cabin', sans-serif;
-  }
-  .arrivals .card-body .card-title span {
-    color: rgb(231, 160, 78);
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin-right: 1rem;
-  }
-  .arrivals .card-body .card-title {
-    font-size: 1.3rem;
-    color: #666;
-    font-weight: bold;
-  }
-  .arrivals .card-body button {
-    padding: 4px 2px;
-  }
-  .box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-  }
-  @media screen and (max-width: 1240px) {
-    .arrivals img {
-      height: 240px;
-    }
-  }
-  @media screen and (max-width: 767px) {
-    .arrivals img {
-      height: 340px;
-    }
-  }
-  @media screen and (max-width: 495px) {
-    .arrivals img {
-      height: 250px;
-      width: 280px;
-    }
-  }
+
 
   /* Testimonials
   ------------------------- */
@@ -180,7 +132,7 @@ body {
   .sellers h2,
   .blog h2 {
     margin-top: 3rem;
-    font-size: 5rem;
+    font-size: 4.5rem;
     color: #777;
     text-align: center;
     font-family: 'Cabin', sans-serif;

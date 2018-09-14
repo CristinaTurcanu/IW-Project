@@ -1,4 +1,4 @@
-import { Product } from './../model/product.model';
+import { Product } from '../model/product.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({

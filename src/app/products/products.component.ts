@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Product } from './../model/product.model';
-import { CategoryService } from './category-service';
+import { ServerService } from '../server-service';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 import { WishlistService } from '../wishlist/wishlist.service';
@@ -17,21 +17,21 @@ export class ProductsComponent implements OnInit {
   pageTitle = '';
   message = 'were added to cart';
 
-  constructor(private categoryService: CategoryService,
+  constructor(private serverService: ServerService,
               private cartService: ShoppingCartService,
               private wishService: WishlistService,
               private router: Router) {
-    this.categories$ = categoryService.getCategories();
+    this.categories$ = serverService.getCategories();
   }
 
   ngOnInit() {
-    this.categoryService.getCategories()
+    this.serverService.getCategories()
     .subscribe();
     this.getProducts(131);
   }
 
   getProducts(cid) {
-    this.categoryService.getProducts(cid)
+    this.serverService.getProducts(cid)
     .subscribe(products => this.products$ = products);
   }
 

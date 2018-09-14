@@ -11,7 +11,7 @@ import { ShoppingCartService } from './shopping-cart.service';
 export class ShoppingCartComponent implements OnInit {
   cart = {products: []};
   product: Product;
-  totalSum = 0;
+  totalSum;
 
   constructor(private cartService: ShoppingCartService) {
     this.cart = JSON.parse(localStorage.getItem('cart'));
@@ -37,5 +37,10 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.deleteProduct(product.id);
     document.getElementById(product.id).style.display = 'none';
     this.cartService.updateCart();
+    this.totalSum -= (product.price * product.quantity);
+
+    if (this.cart.products.length < 1) {
+      return this.totalSum = 0;
+    }
   }
 }

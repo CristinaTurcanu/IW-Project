@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { StorageServiceModule } from 'angular-webstorage-service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +19,7 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { FormComponent } from './account/form/form.component';
 import { ArrivalsComponent } from './home/arrivals/arrivals.component';
+import { SliderComponent } from './home/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ArrivalsComponent } from './home/arrivals/arrivals.component';
     ProductsListComponent,
     ProductDetailsComponent,
     FormComponent,
-    ArrivalsComponent
+    ArrivalsComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import { ArrivalsComponent } from './home/arrivals/arrivals.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    StorageServiceModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

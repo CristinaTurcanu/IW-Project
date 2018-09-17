@@ -1,0 +1,71 @@
+.sellers h2 {
+  margin-top: 3rem;
+  font-size: 4.5rem;
+  color: #777;
+  text-align: center;
+  font-family: 'Cabin', sans-serif;
+}
+.sellers .row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+.sellers .row .column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+  position: relative;
+}
+.sellers .row .column img {
+  width: 100%;
+  height: 90%;
+}
+.sellers .row .column:hover .middle {
+  opacity: 1;
+}
+.sellers .text {
+  background-color: rgba(255, 255, 255, 0.568);
+  color: #222;
+  font-size: 22px;
+  font-weight: 500;
+  font-family: 'Pacifico', sans-serif;
+  padding: 16px 32px;
+  box-shadow: 5px 0 3px #ddd;
+}
+
+.sellers .column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  opacity: 1;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+.sellers .middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  cursor: pointer;
+}
+@media screen and (max-width: 1000px) {
+  .sellers .row .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+  .sellers h2 {
+    font-size: 3.5rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .sellers .row .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+  .sellers h2 {
+    font-size: 2.5rem;
+  }
+}

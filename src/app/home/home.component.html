@@ -1,150 +1,15 @@
 <div class="container-fluid">
+
   <app-slider></app-slider>
-  <app-arrivals></app-arrivals>
 
-  <!-- Testimonials -->
-  <section class="testimonials">
-        <div id="testimonials" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#testimonials" data-slide-to="0" class="active"></li>
-            <li data-target="#testimonials" data-slide-to="1"></li>
-            <li data-target="#testimonials" data-slide-to="2"></li>
-          </ol>
+  <app-arrivals (productReceived)="showProducts($event)"></app-arrivals>
 
-          <div class="carousel-inner">
-            <div class="carousel-item active text-center">
-              <div class="col-xs-12 col-md-6 col-lg-6">
-                  <div class="img-box p-1 rounded-circle m-auto">
-                      <img class="d-block w-100 rounded-circle" src="../../assets/images/testimonials/ceo.jpg" alt="First slide">
-                  </div>
-                  <h5 class="mb-1"><strong class="text-dark text-uppercase">John Barton</strong></h5>
-                  <h6 class="text-muted m-0">CEO & Founder</h6>
-                  <p class="m-2 pt-3 text-dark">Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
+  <app-testimonials></app-testimonials>
 
-            <div class="carousel-item text-center">
-              <div class="col-xs-12 col-md-6 col-lg-6">
-                  <div class="img-box p-1 rounded-circle m-auto">
-                      <img class="d-block w-100 rounded-circle" src="http://nicesnippets.com/demo/profile-3.jpg" alt="First slide">
-                  </div>
-                  <h5 class="mb-1"><strong class="text-dark text-uppercase">Steve Fonsi</strong></h5>
-                  <h6 class="text-muted m-0">Designer</h6>
-                  <p class="m-2 pt-3 text-dark">Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
+  <app-best-sellers></app-best-sellers>
 
-            <div class="carousel-item text-center">
-              <div class="col-xs-12 col-md-6 col-lg-6">
-                  <div class="img-box p-1 rounded-circle m-auto">
-                      <img class="d-block w-100 rounded-circle" src="../../assets/images/testimonials/cto.jpg" alt="First slide">
-                  </div>
-                  <h5 class="mb-1"><strong class="text-dark text-uppercase">Daniela Vebar</strong></h5>
-                  <h6 class="text-muted m-0">Seo Analyst</h6>
-                  <p class="m-2 pt-3 text-dark">Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
-          </div>
+  <app-blog></app-blog>
 
-          <a class="carousel-control-prev" href="#testimonials" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#testimonials" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-  </section>
+  <app-footer></app-footer>
 
-  <!-- Best Sellers -->
-  <section class="sellers">
-  <h2>Best Sellers</h2>
-  <div class="row">
-
-      <div class="column">
-        <img src="../../assets/images/sellers/12.jpg">
-        <div class="middle">
-            <div class="text">Fancy Lamp</div>
-          </div>
-      </div>
-
-      <div class="column">
-          <img src="../../assets/images/sellers/4.jpg">
-          <div class="middle">
-              <div class="text">Modern desk</div>
-            </div>
-      </div>
-
-      <div class="column">
-        <img src="../../assets/images/sellers/7.jpg">
-        <div class="middle">
-            <div class="text">Powerful Closet</div>
-          </div>
-      </div>
-
-      <div class="column">
-        <img src="../../assets/images/sellers/11.jpg">
-        <div class="middle">
-            <div class="text">White sofa</div>
-          </div>
-      </div>
-
-  </div>
-  </section>
-
-  <!-- BLOG -->
-  <section class="blog">
-  <h2>Top 3 topics on Blog</h2>
-  <div class="row mb-2 mt-5">
-      <div class="col-md-4">
-        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-          <div class="card-body d-flex flex-column align-items-start">
-            <strong class="d-inline-block mb-2 text-muted">Design</strong>
-            <h3 class="mb-0">
-              <a class="text-dark" href="#">Live better</a>
-            </h3>
-            <div class="mb-1 text-muted">Jun 12</div>
-            <p class="card-text mb-auto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum dolores explicabo unde iure rem, laboriosam quaerat aut beatae tenetur voluptatibus dolorem facere quisquam. Lorem est.</p>
-            <button type="button" class="btn btn-sm btn-outline-secondary">
-              <a href="#" class="more">More <i class="arrow right"></i></a>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-          <div class="card-body d-flex flex-column align-items-start">
-            <strong class="d-inline-block mb-2 text-muted">Arhitecture</strong>
-            <h3 class="mb-0">
-              <a class="text-dark" href="#">Just read it</a>
-            </h3>
-            <div class="mb-1 text-muted">Aug 10</div>
-            <p class="card-text mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. At delectus esse necessitatibus vel, quia non quod dolorum maxime repellat sapiente, aperiam incidunt esse necessitatibus.</p>
-            <button type="button" class="btn btn-sm btn-outline-secondary">
-              <a href="#" class="more">More <i class="arrow right"></i></a>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-          <div class="card-body d-flex flex-column align-items-start">
-            <strong class="d-inline-block mb-2 text-muted">Design</strong>
-            <h3 class="mb-0">
-              <a class="text-dark" href="#">Black Color</a>
-            </h3>
-            <div class="mb-1 text-muted">May 21</div>
-            <p class="card-text mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam laboriosam quam, autem alias eos asperiores repellat nihil aperiam velit? Non quod et corporis ipsam laboriosam!</p>
-            <button type="button" class="btn btn-sm btn-outline-secondary">
-              <a href="#" class="more">More <i class="arrow right"></i></a>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 </div>

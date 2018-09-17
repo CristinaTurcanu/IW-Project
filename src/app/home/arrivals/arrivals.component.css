@@ -10,16 +10,18 @@
   text-align: center;
   font-family: 'Cabin', sans-serif;
 }
+.card-deck {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  min-width: 300px;
+}
 .arrivals img {
   width: auto;
   max-height: 320px;
-}
-.arrivals h1 {
-  padding: 10px 0;
-  font-size: 5.3rem;
-  color: #777;
-  text-align: center;
-  font-family: 'Cabin', sans-serif;
 }
 .arrivals .card-body .card-title span {
   color: rgb(231, 160, 78);
@@ -32,25 +34,25 @@
   color: #666;
   font-weight: bold;
 }
+p.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200ch;
+}
 .arrivals .card-body button {
   padding: 4px 2px;
 }
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
-@media screen and (max-width: 1240px) {
-  .arrivals img {
-    height: 240px;
+@media screen and (max-width: 1000px) {
+  .arrivals h2 {
+    font-size: 3.5rem;
   }
 }
-@media screen and (max-width: 767px) {
-  .arrivals img {
-    height: 340px;
-  }
-}
-@media screen and (max-width: 495px) {
-  .arrivals img {
-    height: 250px;
-    width: 280px;
+@media screen and (max-width: 600px) {
+  .arrivals h2 {
+    font-size: 2.5rem;
   }
 }

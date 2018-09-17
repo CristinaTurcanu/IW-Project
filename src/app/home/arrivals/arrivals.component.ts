@@ -1,6 +1,6 @@
-import { ServerService } from './../../server-service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../model/product.model';
+
 
 @Component({
   selector: 'app-arrivals',
@@ -9,25 +9,33 @@ import { Product } from '../../model/product.model';
 })
 export class ArrivalsComponent implements OnInit {
   product: Product;
-  products$;
-  products;
-  latest_products = [];
+  @Output() productReceived = new EventEmitter<Product[]>();
 
-  constructor(private serverService: ServerService) { }
+  constructor() {
+    this.productReceived.emit();
+  }
 
   ngOnInit() {
-    this.getProducts();
-  }
-  getProducts() {
-    this.serverService.getProducts(131)
-    .subscribe(products => this.products$ = products);
-    this.getRecentCreatedProducts(this.products$);
-  }
-  getRecentCreatedProducts(products) {
-    const sorted_products = products.sort((a, b) => {
-      return a.created_at > b.created_at;
-      });
-    this.latest_products = sorted_products.slice(0, 3);
-    console.log(this.latest_products);
   }
 }
+
+
+
+
+  // showProducts() {
+  //   this.serverService.getCategories()
+  //   .subscribe(categories => this.categories$ = categories);
+  //   console.log(this.categories$);
+
+  //   Observable.zip(this.categories$.map(category => {
+  //       this.serverService.getProducts(category.id);
+  //   }))
+  //   .subscribe(products => {
+  //     this.products$ = [].concat.apply([], products);
+
+  //   const sorted_products = this.products$.sort((a, b) => {
+  //   return a.created_at > b.created_at;
+  //   });
+  //   this.latest_products = sorted_products.slice(0, 3);
+  //   });
+  // }

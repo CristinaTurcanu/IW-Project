@@ -36,9 +36,7 @@ export class ShoppingCartComponent implements OnInit {
   deleteProduct(product) {
     this.cartService.deleteProduct(product.id);
     document.getElementById(product.id).style.display = 'none';
-    this.cartService.updateCart();
     this.totalSum -= (product.price * product.quantity);
-
     if (this.cart.products.length < 1) {
       return this.totalSum = 0;
     }

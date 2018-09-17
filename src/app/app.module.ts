@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -20,6 +21,12 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { FormComponent } from './account/form/form.component';
 import { ArrivalsComponent } from './home/arrivals/arrivals.component';
 import { SliderComponent } from './home/slider/slider.component';
+import { TestimonialsComponent } from './home/testimonials/testimonials.component';
+import { BestSellersComponent } from './home/best-sellers/best-sellers.component';
+import { BlogComponent } from './home/blog/blog.component';
+import { FooterComponent } from './/footer/footer.component';
+import { InformationComponent } from './contact/information/information.component';
+import { LocationComponent } from './contact/location/location.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,13 @@ import { SliderComponent } from './home/slider/slider.component';
     ProductDetailsComponent,
     FormComponent,
     ArrivalsComponent,
-    SliderComponent
+    SliderComponent,
+    TestimonialsComponent,
+    BestSellersComponent,
+    BlogComponent,
+    FooterComponent,
+    InformationComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +57,8 @@ import { SliderComponent } from './home/slider/slider.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    Ng2CarouselamosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

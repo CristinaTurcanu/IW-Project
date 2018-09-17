@@ -1,0 +1,15 @@
+.carousel {
+  height: 360px;
+  background-color: rgba(240, 236, 236, 0.6);
+}
+.slide {
+  position: relative;
+}
+img {
+  margin-top: 30px;
+  width: 200px;
+}
+p {
+  font-size: 22px;
+}
+

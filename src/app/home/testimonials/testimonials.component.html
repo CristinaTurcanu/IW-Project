@@ -1,0 +1,11 @@
+ <ngb-carousel class="container-fluid carousel">
+    <ng-template ngbSlide *ngFor="let person of people" class="slide">
+      <div class="person d-block text-center">
+        <img src="{{person.img}}" class="rounded-circle">
+        <div class="caption text-center">
+            <h3 class="text-dark text-uppercase">{{ person.name }}</h3>
+            <p class="text-muted">{{ person.position }}</p>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>

@@ -1,6 +1,5 @@
-
 .card {
-  max-width: 363px;
+  max-width: 330px;
   margin: 15px 0;
   cursor: pointer;
   max-height: 500px;
@@ -10,16 +9,16 @@
   transform: scale(1.03);
 }
 img {
-  width: 330px;
-  height: 330px;
+  width: 300px;
+  height: 300px;
   margin: 0 auto;
   text-align: center;
 }
 .card .description {
   display: grid;
-  grid-template-columns: 45% 25% 20%;
+  grid-template-columns: 45% 25% 30%;
   position: relative;
-  grid-column-gap: 20px;
+  /* grid-column-gap: 16px; */
 }
 .card .description p{
   margin-bottom: 0;
@@ -28,28 +27,32 @@ img {
   text-decoration: none;
 }
 .card .description .name {
-  font-size: 22px;
+  font-size: 20px;
   text-transform: capitalize;
   color: #666;
   font-family: 'Pacifico', sans-serif;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 .card .description .name:hover {
   color: rgb(58, 52, 39);
 }
 .card .description .price {
-  font-size: 18px;
+  font-size: 16px;
   color: rgb(184, 153, 91);
   font-weight: bold;
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
 .card .description .availability {
   color: #666;
-  font-size: 18px;
+  font-size: 14px;
 }
 .card .description .descr {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 75ch;
+  max-width: 70ch;
   grid-column-start: 1;
   grid-column-end: 4;
 }
@@ -86,7 +89,7 @@ img {
   bottom: 20px;
   left: 0;
   right: 0;
-  height: 330px;
+  height: 300px;
   width: 100%;
   opacity: 0;
   transition: .4s ease;

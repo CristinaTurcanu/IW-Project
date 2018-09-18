@@ -9,7 +9,7 @@ body {
 }
 h1 {
   margin-top: 5rem;
-  font-size: 3.4rem;
+  font-size: 3rem;
   color: #777;
   text-align: center;
   font-family: 'Cabin', sans-serif;
@@ -17,7 +17,7 @@ h1 {
 .categories {
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
+  margin: 10px 0;
   text-align: center;
 }
 .products {
@@ -25,8 +25,6 @@ h1 {
   justify-content: space-between;
 }
 .cards {
-  width: 80%;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-column-gap: 16px;
@@ -45,7 +43,7 @@ h1 {
     margin: 5px 0;
   }
   h1 {
-      font-size: 33px;
+      font-size: 2rem;
   }
   .cards {
       grid-template-columns: auto;
@@ -53,7 +51,7 @@ h1 {
 }
 @media screen and (max-width: 670px) {
   .categories button {
-    font-size: 20px;
+    font-size: 18px;
     padding: 5px;
   }
 }

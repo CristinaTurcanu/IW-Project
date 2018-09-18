@@ -1,10 +1,9 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ServerService } from '../../server-service';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 import { WishlistService } from '../wishlist/wishlist.service';
-import { relative } from 'path';
 
 @Component({
   selector: 'app-products',
@@ -21,7 +20,8 @@ export class ProductsComponent implements OnInit {
   constructor(private serverService: ServerService,
               private cartService: ShoppingCartService,
               private wishService: WishlistService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
     this.categories$ = serverService.getCategories();
   }
 
@@ -29,12 +29,17 @@ export class ProductsComponent implements OnInit {
     this.serverService.getCategories()
     .subscribe(categories => this.categories$ = categories);
     this.getProducts(131);
+    this.route.params
+      .subscribe(params => {
+        let cid = +params['cid'];
+        this.getProducts(cid);
+      });
   }
 
   getProducts(cid) {
     this.serverService.getProducts(cid)
     .subscribe(products => this.products$ = products);
-
+    this.router.navigate(['/products', cid]);
   }
 
   showDetails (product: Product) {

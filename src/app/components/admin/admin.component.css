@@ -1,0 +1,17 @@
+body {
+  height: 100vh;
+  position: relative;
+}
+h2 {
+  margin-top: 5rem;
+  font-size: 3.4rem;
+  color: #777;
+  text-align: center;
+  font-family: 'Cabin', sans-serif;
+}
+.categories {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  text-align: center;
+}

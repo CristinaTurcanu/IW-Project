@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './products/products.component';
-import { ContactComponent } from './contact/contact.component';
-import { AccountComponent } from './account/account.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { ProductDetailsComponent } from './products/product-details/product-details.component';
-
+import { HomeComponent } from './components/home/home.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { AccountComponent } from './components/account/account.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const appRoutes: Routes = [
   { path : '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,8 @@ const appRoutes: Routes = [
   { path : 'products/:cid/:fid', component: ProductDetailsComponent},
   { path : 'contact', component: ContactComponent },
   { path : 'account', component: AccountComponent },
+  { path : 'signIn', component: SignInComponent },
+  { path : 'admin', component: AdminComponent },
   { path : 'wishlist', component: WishlistComponent },
   { path : 'shopping-cart', component: ShoppingCartComponent }
 ];

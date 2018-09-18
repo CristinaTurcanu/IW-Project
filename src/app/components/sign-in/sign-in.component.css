@@ -1,0 +1,36 @@
+.container-fluid {
+  /* background: url(../../../assets/images/4.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  top: 0;
+  padding-top: 10rem; */
+}
+form {
+  background-color: #fff;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 10rem;
+  padding: 30px;
+  position: relative;
+  height: 300px;
+  border: 1px solid #888;
+  border-radius: 6px;
+}
+h2 {
+  color: #222;
+  font-size: 30px;
+  font-weight: 500;
+  font-family: 'Pacifico', sans-serif;
+  text-align: center;
+}
+.btn {
+  width: 400px;
+  font-size: 20px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(231, 231, 231, 0.6);
+}
+.btn:hover {
+  box-shadow: 2px 1px 2px 2px #bbb;
+}

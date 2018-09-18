@@ -1,0 +1,55 @@
+<div class="cart">
+  <h3>Shopping Cart</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Name</th>
+        <th scope="col">Availability</th>
+        <th scope="col">Color</th>
+        <th scope="col">Price/unit</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total price</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="cart.products.length; else emptyCart" >
+      <tr [id]="product.id" *ngFor="let product of cart.products">
+          <th scope="row">
+            <img src="../../assets/images/products/frn13.jpg">
+          </th>
+          <td>{{ product.name }}</td>
+          <td>{{ product.availability }}</td>
+          <td>{{ product.color }}</td>
+          <td>{{ product.price|currency:'USD':'symbol'}}</td>
+          <td>
+            <input
+              type="number"
+              class="inputQuantity"
+              [(ngModel)]="this.product.quantity"
+              (ngModelChange)="onQuantitySelected($event)"
+              min="1">
+          </td>
+          <td class="productTotal">{{ product.price * this.product.quantity | number: '1.1-2' }}</td>
+          <td class="del" (click)="deleteProduct(this.product)">X</td>
+      </tr>
+    </tbody>
+    <ng-template #emptyCart>
+      <tr>You have nothing in your Shopping Cart</tr>
+    </ng-template>
+
+    <tfoot>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">Total Price</th>
+        <th scope="col">{{ totalSum|currency:'USD':'symbol' }}</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,0 +1,26 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Availability</th>
+        <th scope="col">Price</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of apiProducts">
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.availability }}</td>
+        <td>{{ product.price }}</td>
+        <td><i class="fa fa-edit"></i></td>
+        <td><i class="fa fa-trash"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

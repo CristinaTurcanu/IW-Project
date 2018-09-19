@@ -14,29 +14,10 @@ h1 {
   text-align: center;
   font-family: 'Cabin', sans-serif;
 }
-.categories {
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0;
-  text-align: center;
-}
+
 .products {
   display: flex;
   justify-content: space-between;
-}
-.cards {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-column-gap: 16px;
-}
-
-@media screen and (max-width: 1300px) {
-  .categories button {
-    font-size: 28px;
-  }
-  .cards {
-      grid-template-columns: auto auto;
-  }
 }
 @media screen and (max-width: 970px) {
   .categories {
@@ -44,14 +25,5 @@ h1 {
   }
   h1 {
       font-size: 2rem;
-  }
-  .cards {
-      grid-template-columns: auto;
-  }
-}
-@media screen and (max-width: 670px) {
-  .categories button {
-    font-size: 18px;
-    padding: 5px;
   }
 }

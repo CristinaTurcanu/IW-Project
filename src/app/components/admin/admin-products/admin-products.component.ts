@@ -1,3 +1,5 @@
+import { ServerService } from './../../../server-service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from './../../../models/product.model';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,10 +10,28 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AdminProductsComponent implements OnInit {
   @Input() apiProducts;
-  @Input() product: Product;
+  @Input() product;
+  subscription;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private serverService: ServerService) {}
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    let cid = this.route.snapshot.paramMap.get['cid'];
+    this.subscription = this.route.params
+      .subscribe(params => {
+        cid = +params['cid'];
+        this.getProducts(cid);
+      });
+  }
+  getProducts(cid) {
+    this.serverService.getProducts(cid).subscribe(
+      products => {
+      return this.apiProducts = products;
+    });
+  }
+  editProduct(product: Product) {
+    this.router.navigate(['/admin', product.furniture_category_id, product.id]);
+  }
 }

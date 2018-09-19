@@ -1,23 +1,18 @@
 <h1>Choose your favourite product</h1>
-<div class="jumbotron">
-    <p class="lead text-center">{{ pageTitle }}</p>
-</div>
 <div class="products row">
-  <div class="categories col-lg-3 col-md-4 col-sm-12">
-    <app-category-list
-      *ngFor="let category of categories$"
-      [category]="category"
-      (click)="getProducts(category.id)"></app-category-list>
+  <div class="col-lg-3 col-md-4 col-sm-12">
+    <app-category-list>
+    </app-category-list>
   </div>
-  <div class="cards col-lg-9 col-md-8 col-sm-12">
-    <app-products-list
+  <div class="col-lg-9 col-md-8 col-sm-12">
+    <!-- <app-products-list
       *ngFor="let product of products$"
       [product]="product"
       (productReceived)="showDetails($event)"
       (addedToCart)="addToCart($event)"
       (addedToWishlist)="addToWishlist($event)">
-    </app-products-list>
-    <!-- <router-outlet></router-outlet> -->
+    </app-products-list> -->
+    <router-outlet></router-outlet>
   </div>
 </div>
 

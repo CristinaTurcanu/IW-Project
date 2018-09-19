@@ -1,6 +1,5 @@
-import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ServerService } from '../../../server-service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-category-list',
@@ -8,30 +7,25 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  @Input() category: {name: string, cid: number};
-  products$;
+  apiProducts;
+  apiCategories;
 
-  constructor(private serverService: ServerService,
-              private route: ActivatedRoute,
-              private router: Router) {}
+  // pageTitle = '';
+  // message = 'were added to cart';
+
+  constructor(private serverService: ServerService) {}
 
   ngOnInit() {
-    this.category = {
-      name: this.category.name,
-      cid: +this.route.snapshot.params['cid']
-    };
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.category.cid = params['cid'];
-        }
-      );
+    this.serverService.getCategories()
+    .subscribe(categories => {
+      return this.apiCategories = categories;
+    });
   }
 
   getProducts(cid) {
     this.serverService.getProducts(cid)
-    .subscribe(product => this.products$ = product);
+    .subscribe(products => this.apiProducts = products);
   }
-
-
 }
+
+

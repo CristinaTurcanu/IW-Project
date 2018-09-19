@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from './shopping-cart.service';
@@ -13,7 +14,8 @@ export class ShoppingCartComponent implements OnInit {
   product: Product;
   totalSum;
 
-  constructor(private cartService: ShoppingCartService) {
+  constructor(private cartService: ShoppingCartService,
+              private router: Router) {
     this.cart = JSON.parse(localStorage.getItem('cart'));
   }
 
@@ -38,6 +40,7 @@ export class ShoppingCartComponent implements OnInit {
 
   deleteProduct(product) {
     this.cartService.deleteProduct(product.id);
+    this.cartService.updateCart();
     document.getElementById(product.id).style.display = 'none';
     this.totalSum -= (product.price * product.quantity);
     if (this.cart.products.length < 1) {

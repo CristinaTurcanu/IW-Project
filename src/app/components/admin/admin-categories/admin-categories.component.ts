@@ -1,5 +1,5 @@
 import { ServerService } from './../../../server-service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-admin-categories',
@@ -7,10 +7,22 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./admin-categories.component.css']
 })
 export class AdminCategoriesComponent implements OnInit {
-  @Input() category: {name: string, id: number};
+  apiCategories;
+  apiProducts;
 
-  constructor() { }
+  constructor(private serverService: ServerService) { }
 
   ngOnInit() {
+    this.serverService.getCategories()
+    .subscribe(categories => {
+      return this.apiCategories = categories;
+    });
+  }
+
+  getProducts(cid) {
+    this.serverService.getProducts(cid)
+      .subscribe(products => {
+        return this.apiProducts = products;
+      });
   }
 }

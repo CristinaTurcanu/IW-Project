@@ -9,9 +9,4 @@ h2 {
   text-align: center;
   font-family: 'Cabin', sans-serif;
 }
-.categories {
-  display: flex;
-  flex-direction: column;
-  margin: 5px 0;
-  text-align: center;
-}
+

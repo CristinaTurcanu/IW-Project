@@ -1,6 +1,11 @@
+.cards {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-column-gap: 10px;
+}
 .card {
   max-width: 330px;
-  margin: 15px 0;
+  margin: 10px 0;
   cursor: pointer;
   max-height: 500px;
 }
@@ -18,7 +23,6 @@ img {
   display: grid;
   grid-template-columns: 45% 25% 30%;
   position: relative;
-  /* grid-column-gap: 16px; */
 }
 .card .description p{
   margin-bottom: 0;
@@ -115,4 +119,18 @@ img {
 .added {
   opacity: 1;
 }
-
+p.excuse {
+  padding: 20px;
+  font-size: 20px;
+  border: 1px solid #ddd;
+}
+@media screen and (max-width: 1300px) {
+  .cards {
+      grid-template-columns: auto auto;
+  }
+}
+@media screen and (max-width: 970px) {
+  .cards {
+      grid-template-columns: auto;
+  }
+}

@@ -1,11 +1,11 @@
 nav {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
   border-bottom: .7px solid #ccc;
   width: 100vw;
 }
 .navbar-dark .navbar-brand {
   color: #666;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: 'Pacifico', cursive;
 }
 .navbar-dark .navbar-brand:hover,
@@ -18,11 +18,11 @@ nav #navbar .nav-link{
   font-size: 1.3rem;
   font-weight: 400;
   position: relative;
-  padding: 0 0.6rem;
+  padding: 0 0.5rem;
   cursor: pointer;
 }
 nav #navbar .nav-link i {
-  padding: 0 0.6rem;
+  padding: 0 0.5rem;
 }
 nav .navbar-toggler .navbar-toggler-icon {
   color: #444;

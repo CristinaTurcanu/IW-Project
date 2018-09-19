@@ -1,4 +1,10 @@
-<button>
-  {{ category.name }}
-</button>
+<div class="categories">
+  <button
+    *ngFor="let category of apiCategories"
+    (click)="getProducts(category.id)"
+    [routerLink]="['/products', category.id]"
+    routerLinkActive="active">
+    {{ category.name }}
+  </button>
+</div>
 

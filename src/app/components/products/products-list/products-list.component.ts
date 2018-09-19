@@ -1,22 +1,35 @@
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { WishlistService } from './../../wishlist/wishlist.service';
+import { ShoppingCartService } from './../../shopping-cart/shopping-cart.service';
+import { ServerService } from './../../../server-service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../../models/product.model';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
-  @Input() product: any;
-  @Output() productReceived = new EventEmitter<Product>();
-  @Output() addedToCart = new EventEmitter<Product>();
-  @Output() addedToWishlist = new EventEmitter<Product>();
+export class ProductsListComponent implements OnInit, OnDestroy {
+  product: Product;
+  cid: number;
+  apiProducts;
+  subscription;
+  pageTitle = '';
+  message = 'were added to cart';
+  // @Output() productReceived = new EventEmitter<Product>();
+  // @Output() addedToCart = new EventEmitter<Product>();
+  // @Output() addedToWishlist = new EventEmitter<Product>();
 
   options = [];
-  defaultOption: number;
+  defaultOption = 1;
   alllowAddToWishlist = false;
 
-  constructor() { }
+  constructor(private serverService: ServerService,
+              private cartService: ShoppingCartService,
+              private wishService: WishlistService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.options = [
@@ -26,27 +39,61 @@ export class ProductsListComponent implements OnInit {
       {value: 4},
       {value: 5}
     ];
-    this.defaultOption = 1;
+
+    let cid = this.route.snapshot.paramMap.get['cid'];
+    this.subscription = this.route.params
+      .subscribe(params => {
+        cid = +params['cid'];
+        this.getProducts(cid);
+      });
   }
-  checkStatus() {
-    if (this.product.availability === 'Out of Stock' || this.product.availability === 'Not Available') {
+
+  getProducts(cid) {
+    this.serverService.getProducts(cid).subscribe(
+      products => {
+        return this.apiProducts = products;
+        console.log(this.apiProducts);
+    });
+  }
+
+  checkStatus(product: Product) {
+    if (product.availability === 'Out of Stock' || product.availability === 'Not Available') {
       return true;
     }
   }
-  onQuantitySelected(value: number) {
-    this.product.quantity = +value;
+
+  onOtherQuantity(product) {
+    product.quantity = event.target;
   }
 
-  getProduct(product) {
-    this.productReceived.emit(product);
+  addToCart(product: Product) {
+    if (!product.quantity) {
+      product.quantity = 1;
+    }
+    this.cartService.addProduct(product);
+    this.pageTitle = product.quantity + ' piece(s) of ' +  product.name + ' ' + this.message;
   }
 
-  addToCart(product) {
-    this.addedToCart.emit(product);
+  addToWishlist(product: Product) {
+    product.quantity = 1;
+    this.wishService.addProduct(product);
   }
 
-  addToWishlist(product) {
-    this.addedToWishlist.emit(product);
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
-
 }
+
+
+
+  // getProduct(product) {
+  //   this.productReceived.emit(product);
+  // }
+
+  // addToCart(product) {
+  //   this.addedToCart.emit(product);
+  // }
+
+  // addToWishlist(product) {
+  //   this.addedToWishlist.emit(product);
+  // }

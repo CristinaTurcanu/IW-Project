@@ -9,19 +9,10 @@ import { Component, OnInit,  } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
   products: Product[];
-  apiCategories;
-  apiProducts;
 
-  constructor(private serverService: ServerService) {
-    this.apiCategories = this.serverService.getCategories();
-  }
+  constructor(private serverService: ServerService) {}
 
   ngOnInit() {
   }
-  getProducts(cid) {
-    this.serverService.getProducts(cid)
-      .subscribe(products => {
-        return this.apiProducts = products;
-      });
-  }
+
 }

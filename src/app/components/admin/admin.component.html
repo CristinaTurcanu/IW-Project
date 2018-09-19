@@ -1,16 +1,14 @@
 <div class="container-fluid">
   <h2>Edit products</h2>
   <div class="products row">
-    <div class="categories col-lg-2 col-md-3 col-sm-12">
-      <app-admin-categories
-        *ngFor="let category of apiCategories | async"
-        [category]="category"
-        (click)="getProducts(category.id)">
+    <div class="col-lg-3 col-md-4 col-sm-12">
+      <app-admin-categories>
       </app-admin-categories>
     </div>
-    <div class="col-lg-10 col-md-9 col-sm-12">
-      <app-admin-products [apiProducts]="apiProducts">
-      </app-admin-products>
+    <div class="col-lg-9 col-md-8 col-sm-12">
+      <!-- <app-admin-products [apiProducts]="apiProducts">
+      </app-admin-products> -->
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

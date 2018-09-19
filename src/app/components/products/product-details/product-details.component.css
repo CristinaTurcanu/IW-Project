@@ -1,17 +1,13 @@
 .card {
-  margin-top: 5rem;
+  margin-top: 10px;
 }
 .card-header {
-  font-size: 26px;
-}
-.card .field {
-  font-size: 20px;
-  font-family: 'Cabin', sans-serif;
-  padding: 5px 0;
+  font-size: 24px;
+  padding: 9px 20px;
 }
 .card .details {
   text-align: justify;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 1px;
   line-height: 1.2;
   font-family: 'Cabin', sans-serif;
@@ -21,14 +17,18 @@
   width: 120px;
   background-color: #fff;
   color: #333;
-  font-size: 1.2rem;
+  font-size: 16px;
   font-weight: 500;
   font-family: 'Pacifico', sans-serif;
-  padding: 8px 0;
+  padding: 6px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
 }
 .card select {
   padding: 2px;
+}
+.card .field {
+  font-size: 16px;
+  font-family: 'Cabin', sans-serif;
 }

@@ -35,8 +35,6 @@
           </div>
         </div>
         <br>
-        <br>
-        <br>
         <div class='row'>
           <div class='col-md-4 field'>Do you like it?</div>
           <div class='col-md-8 addBtn'>
@@ -46,25 +44,19 @@
             </button>
           </div>
         </div>
-        <div class="row">
-         <h4 class="field">{{ message }}</h4>
-        </div>
       </div>
 
       <div class='col-md-4'>
-        <img class='center-block img-responsive'
+        <img class='img-responsive'
              src='../../assets/images/products/frn13.jpg'
-             [style.width.px]='400'
+             [style.width.px]='340'
              [title]='product.name'>
       </div>
+
     </div>
   </div>
+</div>
 
-  <div class='card-footer'>
-    <button class='btn btn-outline-secondary'
-            (click)='onBack()'
-            style='width:80px'>
-      <i class='fa fa-chevron-left'></i> Back
-    </button>
-  </div>
+<div class='card-footer'>
+  <p class="field">{{ message }}</p>
 </div>

@@ -58,7 +58,4 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.addProduct(product);
     this.message = 'You added ' + this.product.quantity + ' piece(s)';
   }
-  onBack() {
-    this.router.navigate(['/products']);
-  }
 }

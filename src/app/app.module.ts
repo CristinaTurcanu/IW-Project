@@ -29,6 +29,9 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminCategoriesComponent } from './components/admin/admin-categories/admin-categories.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
+import { AdminProductEditComponent } from './components/admin/admin-product-edit/admin-product-edit.component';
+import { AdminStartComponent } from './components/admin/admin-start/admin-start.component';
+import { ProductsStartComponent } from './components/products/products-start/products-start.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { AdminProductsComponent } from './components/admin/admin-products/admin-
     SignInComponent,
     AdminComponent,
     AdminCategoriesComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    AdminProductEditComponent,
+    AdminStartComponent,
+    ProductsStartComponent
   ],
   imports: [
     BrowserModule,

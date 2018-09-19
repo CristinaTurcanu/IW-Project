@@ -21,7 +21,13 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   // @Output() addedToCart = new EventEmitter<Product>();
   // @Output() addedToWishlist = new EventEmitter<Product>();
 
-  options = [];
+  options = [
+    {value: 1},
+    {value: 2},
+    {value: 3},
+    {value: 4},
+    {value: 5}
+  ];
   defaultOption = 1;
   alllowAddToWishlist = false;
 
@@ -32,27 +38,19 @@ export class ProductsListComponent implements OnInit, OnDestroy {
               private router: Router) { }
 
   ngOnInit() {
-    this.options = [
-      {value: 1},
-      {value: 2},
-      {value: 3},
-      {value: 4},
-      {value: 5}
-    ];
-
     let cid = this.route.snapshot.paramMap.get['cid'];
     this.subscription = this.route.params
       .subscribe(params => {
         cid = +params['cid'];
         this.getProducts(cid);
       });
+    this.product.quantity = this.defaultOption;
   }
 
   getProducts(cid) {
     this.serverService.getProducts(cid).subscribe(
       products => {
         return this.apiProducts = products;
-        console.log(this.apiProducts);
     });
   }
 
@@ -62,15 +60,12 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     }
   }
 
-  onOtherQuantity(product) {
-    product.quantity = event.target;
-  }
-
   addToCart(product: Product) {
     if (!product.quantity) {
       product.quantity = 1;
     }
     this.cartService.addProduct(product);
+    console.log(product);
     this.pageTitle = product.quantity + ' piece(s) of ' +  product.name + ' ' + this.message;
   }
 

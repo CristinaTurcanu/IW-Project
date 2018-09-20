@@ -1,6 +1,6 @@
-import { Product } from '../../models/product.model';
+import { Product } from './../../models/product.model';
 import { WishlistService } from './wishlist.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 
 @Component({
@@ -10,8 +10,7 @@ import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 })
 export class WishlistComponent implements OnInit {
   wishlist = {products: []};
-  product: Product;
-  deleted = false;
+
   constructor(private wishService: WishlistService,
               private cartService: ShoppingCartService) {
     this.wishlist = JSON.parse(localStorage.getItem('wishlist'));
@@ -20,10 +19,17 @@ export class WishlistComponent implements OnInit {
   ngOnInit() {
     this.wishService.getProducts();
   }
+
+  newCounterValue() {
+    this.cartService.getProducts();
+    this.cartService.changeCounterValue(this.cartService.getTotalQuantity());
+  }
+
   addToCart(product: Product) {
     this.cartService.addProduct(product);
-
+    this.newCounterValue();
   }
+
   deleteProduct(product) {
     document.getElementById(product.id).style.display = 'none';
     this.wishService.deleteProduct(product);

@@ -10,9 +10,6 @@ export class CategoryListComponent implements OnInit {
   apiProducts;
   apiCategories;
 
-  // pageTitle = '';
-  // message = 'were added to cart';
-
   constructor(private serverService: ServerService) {}
 
   ngOnInit() {
@@ -24,7 +21,9 @@ export class CategoryListComponent implements OnInit {
 
   getProducts(cid) {
     this.serverService.getProducts(cid)
-    .subscribe(products => this.apiProducts = products);
+    .subscribe(products => {
+      return this.apiProducts = products;
+    });
   }
 }
 

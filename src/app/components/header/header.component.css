@@ -28,6 +28,23 @@ nav .navbar-toggler .navbar-toggler-icon {
   color: #444;
   padding: 4px;
 }
+.cart-items-count{
+  position: relative;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  top:-35px;
+}
+
+.notification-counter {
+  position: absolute;
+  left: 25px;
+  background-color: rgb(212, 195, 148);
+  color: #000;
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-size: 11px;
+}
 .active {
   border: 1px solid #aaa;
   padding: 0 3px;

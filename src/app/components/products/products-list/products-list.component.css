@@ -119,6 +119,9 @@ img {
 .added {
   opacity: 1;
 }
+p.info {
+  font-size: 18px;
+}
 p.excuse {
   padding: 20px;
   font-size: 20px;

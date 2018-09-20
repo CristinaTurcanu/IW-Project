@@ -12,7 +12,7 @@
         </tr>
       </thead>
 
-      <tbody *ngIf="wishlist.products.length > 0; else emptyWishlist">
+      <tbody *ngIf="wishlist.products.length; else emptyWishlist">
         <tr [id]="product.id" *ngFor="let product of wishlist.products">
             <th scope="row">
             <img src="../../assets/images/products/frn14.jpg">
@@ -22,8 +22,8 @@
             <td>{{ product.availability }}</td>
             <td>{{ product.price|currency:'USD':'symbol' }}</td>
             <td hidden>{{ product.quantity }}</td>
-            <td class="add" (click)="addToCart(this.product)">Add</td>
-            <td class="del" (click)="deleteProduct(this.product)">X</td>
+            <td class="add" (click)="addToCart(product)">Add</td>
+            <td class="del" (click)="deleteProduct(product)">X</td>
         </tr>
       </tbody>
       <ng-template #emptyWishlist>

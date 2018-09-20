@@ -9,4 +9,12 @@ i {
 td {
   max-width: 430px;
 }
+button {
+  margin-top: 20px;
+  background-color: #fff;
+  color: #333;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 

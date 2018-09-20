@@ -26,5 +26,10 @@ export class AdminProductEditComponent implements OnInit {
     this.serverService.getProduct(cid, fid)
     .subscribe(product => this.product = product);
   }
+  onSaveChanges(product) {
+    console.log(product);
+  }
+
+  onDeleteProduct() {}
 
 }

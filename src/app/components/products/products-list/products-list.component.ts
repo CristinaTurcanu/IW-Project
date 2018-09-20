@@ -17,9 +17,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   subscription;
   pageTitle = '';
   message = 'were added to cart';
-  // @Output() productReceived = new EventEmitter<Product>();
-  // @Output() addedToCart = new EventEmitter<Product>();
-  // @Output() addedToWishlist = new EventEmitter<Product>();
+  counter: number;
 
   options = [
     {value: 1},
@@ -29,13 +27,12 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     {value: 5}
   ];
   defaultOption = 1;
-  alllowAddToWishlist = false;
+  allowAddToWishlist = false;
 
   constructor(private serverService: ServerService,
               private cartService: ShoppingCartService,
               private wishService: WishlistService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
     let cid = this.route.snapshot.paramMap.get['cid'];
@@ -44,14 +41,21 @@ export class ProductsListComponent implements OnInit, OnDestroy {
         cid = +params['cid'];
         this.getProducts(cid);
       });
-    this.product.quantity = this.defaultOption;
   }
 
   getProducts(cid) {
-    this.serverService.getProducts(cid).subscribe(
-      products => {
+    this.serverService.getProducts(cid)
+      .subscribe(products => {
         return this.apiProducts = products;
-    });
+        // this.apiProducts.map(prod => {
+        //   prod.quantity = +this.defaultOption;
+        // });
+      });
+  }
+
+  newCounterValue() {
+    this.cartService.getProducts();
+    this.cartService.changeCounterValue(this.cartService.getTotalQuantity());
   }
 
   checkStatus(product: Product) {
@@ -65,8 +69,8 @@ export class ProductsListComponent implements OnInit, OnDestroy {
       product.quantity = 1;
     }
     this.cartService.addProduct(product);
-    console.log(product);
     this.pageTitle = product.quantity + ' piece(s) of ' +  product.name + ' ' + this.message;
+    this.newCounterValue();
   }
 
   addToWishlist(product: Product) {
@@ -78,8 +82,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 }
-
-
 
   // getProduct(product) {
   //   this.productReceived.emit(product);

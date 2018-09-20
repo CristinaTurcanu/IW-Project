@@ -1,3 +1,4 @@
+<p class="info">{{ pageTitle }}</p>
 <div class="cards">
   <div class="card" *ngFor="let product of apiProducts">
     <img class="card-img-top" src="../../../assets/images/products/frn13.jpg">
@@ -18,7 +19,7 @@
       </div>
 
     <div class="overlay" [ngClass]="{added: allowAddToWishlist}" (click)="allowAddToWishlist = !allowAddToWishlist">
-      <i class="fa fa-heart" (click)="addToWishlist(product)"></i>
+      <i class="fa fa-heart" (click)="addToWishlist(this.product)"></i>
     </div>
 
   </div>

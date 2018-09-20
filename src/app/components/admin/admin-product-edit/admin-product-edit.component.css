@@ -19,4 +19,8 @@ textarea {
 }
 button {
   margin-right: 10px;
+  border: 1px solid #666;
+  font-weight: bold;
+  background-color: rgba(236, 236, 236, 0.5);
+  color: #333;
 }

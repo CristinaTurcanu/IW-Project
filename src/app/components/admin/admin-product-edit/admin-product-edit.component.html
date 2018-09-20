@@ -1,42 +1,131 @@
+
 <div class='card'
-     *ngIf='product'>
+  *ngIf='product'>
   <div class='card-header'>
-    {{pageTitle + ': ' + product.name}}
+  {{pageTitle + ': ' + product.name}}
   </div>
   <div class='card-body'>
     <div class='row'>
-      <div class='col-md-8'>
-        <div class='row'>
-          <div class='col-md-3 field'>Name:</div>
-          <div class='col-md-5 details'>{{product.name}}</div>
-          <input type="text" class="col-md-4" placeholder="New Name">
-        </div>
-        <div class='row'>
-          <div class='col-md-3 field'>Description:</div>
-          <div class='col-md-5 details'>{{product.description}}</div>
-          <textarea type="text" class="col-md-4" placeholder="New Description"></textarea>
-        </div>
-        <div class='row'>
-          <div class='col-md-3 field'>Color:</div>
-          <div class='col-md-5 details'>{{product.color}}</div>
-          <input type="text" class="col-md-4" placeholder="New Color">
-        </div>
-        <div class='row'>
-          <div class='col-md-3 field'>Availability:</div>
-          <div class='col-md-5 details'>{{product.availability}}</div>
-          <input type="text" class="col-md-4" placeholder="New Status">
-        </div>
-        <div class='row'>
-          <div class='col-md-3 field'>Price:</div>
-          <div class='col-md-5 details'>{{product.price|currency:'USD':'symbol'}}</div>
-          <input type="number" class="col-md-4" placeholder="New Price">
-        </div>
-        <hr>
-        <br>
-        <div class="row">
-          <button class="col-md-3 btn">Save changes</button>
-          <button class="col-md-3 btn">Delete</button>
-        </div>
+    <div class='col-md-8'>
+
+      <div class='row'>
+        <div class='col-md-3 field'>Name:</div>
+        <input type="text" class="col-md-9" [(ngModel)]="product.name">
+      </div>
+
+      <div class='row'>
+        <div class='col-md-3 field'>Description:</div>
+        <textarea type="text" class="col-md-9" [(ngModel)]="product.description"></textarea>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-3 field'>Color:</div>
+        <input type="text" class="col-md-9" [(ngModel)]="product.color">
+      </div>
+
+      <div class='row'>
+        <div class='col-md-3 field'>Availability:</div>
+        <input type="text" class="col-md-9" [(ngModel)]="product.availability">
+      </div>
+
+      <div class='row'>
+        <div class='col-md-3 field'>Price:</div>
+        <input type="number" class="col-md-9" [(ngModel)]="product.price">
+      </div>
+
+      <div class='row'>
+        <div class='col-md-3 field'>Upload new image:</div>
+        <input type="text" class="col-md-9" [(ngModel)]="product.imagePath">
+      </div>
+
+      <hr>
+      <br>
+      <div class="row">
+        <button class="col-md-3 btn save" (click)="onSaveChanges(product)">Save changes</button>
+        <button class="col-md-3 btn del" (click)="onDeleteProduct(product)">Delete</button>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- <form class="form-horizontal" method="POST" #editForm="ngForm">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-10">
+      <div class="panel">
+        <div class="panel-heading custom-header-panel">
+            <h3 class="panel-title">{{ pageTitle + ': ' + product.name}}</h3>
+        </div>
+
+        <div class="panel-body">
+          <div class="form-group row">
+              <label class="col-lg-3 col-md-6 col-sm-12 control-label field" for="name">Name</label>
+              <div class="col-lg-5 col-md-6 col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name" id="name"
+                    [(ngModel)]="product.name">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label class="col-lg-3 col-md-6 col-sm-12 control-label field" for="description">Description</label>
+              <div class="col-lg-5 col-md-6 col-sm-12">
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    name="description"
+                    id="description"
+                    [(ngModel)]="product.description">
+                  </textarea>
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label class="col-lg-3 col-md-6 col-sm-12 control-label field" for="color">Color</label>
+              <div class="col-lg-5 col-md-6 col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="color"
+                    id="color"
+                    [(ngModel)]="product.color">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label class="col-lg-3 col-md-6 col-sm-12 control-label field" for="availability">Availability</label>
+              <div class="col-lg-5 col-md-6 col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="availability"
+                    id="availability"
+                    [(ngModel)]="product.availability">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label class="col-lg-3 col-md-6 col-sm-12 control-label field" for="price">Price</label>
+              <div class="col-lg-5 col-md-6 col-sm-12">
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="price"
+                    id="price"
+                    [(ngModel)]="product.price">
+              </div>
+          </div>
+          <hr>
+          <br>
+
+          <div class="form-group row">
+            <button class="col-md-3 col-sm-12 btn save" (click)="onSaveChanges(product)">Save changes</button>
+            <button class="col-md-3 col-sm-12 btn del" (click)="onDeleteProduct(product)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+ -->

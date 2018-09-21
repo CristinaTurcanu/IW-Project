@@ -9,4 +9,6 @@ export interface Product {
   description: string;
   quantity: number;
   total: number;
+  favorite: boolean;
+  imagePath?: string;
 }

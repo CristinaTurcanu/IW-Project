@@ -1,3 +1,4 @@
+import { AdminCreateComponent } from './components/admin/admin-create/admin-create.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,7 +16,7 @@ import { AdminProductEditComponent } from './components/admin/admin-product-edit
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { ProductsStartComponent } from './components/products/products-start/products-start.component';
 import { AdminStartComponent } from './components/admin/admin-start/admin-start.component';
-import { AdminCreateComponent } from './admin/admin-create/admin-create.component';
+
 
 const appRoutes: Routes = [
   { path : '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,10 +30,10 @@ const appRoutes: Routes = [
   { path : 'account', component: AccountComponent },
   { path : 'signIn', component: SignInComponent },
   { path : 'admin', component: AdminComponent, children: [
+    { path : ':cid/new', component: AdminCreateComponent},
     { path : '', component: AdminStartComponent},
     { path : ':cid', component: AdminProductsComponent},
-    { path : ':cid/:fid', component: AdminProductEditComponent},
-    { path : 'new', component: AdminCreateComponent},
+    { path : ':cid/:fid/edit', component: AdminProductEditComponent},
   ]},
   { path : 'wishlist', component: WishlistComponent },
   { path : 'shopping-cart', component: ShoppingCartComponent }

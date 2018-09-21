@@ -19,9 +19,10 @@
         <td>{{ product.availability }}</td>
         <td>{{ product.price }}</td>
         <td><i class="fa fa-edit" (click)="editProduct(product)"></i></td>
-        <td><i class="fa fa-trash"></i></td>
+        <td><i class="fa fa-trash" (click)="deleteProduct(product)"></i></td>
       </tr>
     </tbody>
+    <br>
     <tfoot>
       <tr>
         <button class="btn" (click)="addProduct()">Add new product</button>

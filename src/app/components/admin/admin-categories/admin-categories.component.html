@@ -4,6 +4,9 @@
     (click)="getProducts(category.id)"
     [routerLink]="['/admin', category.id]"
     routerLinkActive="active">
+    <span><i class="fa fa-edit"></i></span>
     {{ category.name }}
   </button>
+  <br>
+  <br>
 </div>

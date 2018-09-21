@@ -1,6 +1,8 @@
+import { Product } from './../../../models/product.model';
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from './../../../server-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -12,7 +14,9 @@ export class AdminProductEditComponent implements OnInit {
   pageTitle = 'Edit product';
 
   constructor(private route: ActivatedRoute,
-              private serverService: ServerService) { }
+              private router: Router,
+              private serverService: ServerService,
+              private adminService: AdminService) { }
 
   ngOnInit() {
     const cid = this.route.snapshot.paramMap.get('cid');
@@ -26,10 +30,15 @@ export class AdminProductEditComponent implements OnInit {
     this.serverService.getProduct(cid, fid)
     .subscribe(product => this.product = product);
   }
-  onSaveChanges(product) {
-    console.log(product);
+
+  saveChanges(product: Product) {
+    alert('Do you want to update this product?');
+    this.adminService.saveChanges(product.furniture_category_id, product.id, product);
+    this.adminService.getProducts(product.furniture_category_id);
+    this.onCancel();
   }
 
-  onDeleteProduct() {}
-
+  onCancel() {
+    this.router.navigate(['../../'], {relativeTo: this.route });
+  }
 }

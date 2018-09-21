@@ -1,3 +1,4 @@
+import { AdminService } from './../admin.service';
 import { ServerService } from './../../../server-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from './../../../models/product.model';
@@ -15,7 +16,8 @@ export class AdminProductsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private serverService: ServerService) {}
+              private serverService: ServerService,
+              private adminService: AdminService) {}
 
   ngOnInit() {
     let cid = this.route.snapshot.paramMap.get['cid'];
@@ -25,17 +27,26 @@ export class AdminProductsComponent implements OnInit {
         this.getProducts(cid);
       });
   }
+
   getProducts(cid) {
     this.serverService.getProducts(cid).subscribe(
       products => {
       return this.apiProducts = products;
     });
   }
+
   editProduct(product: Product) {
-    this.router.navigate(['/admin', product.furniture_category_id, product.id]);
+    this.router.navigate(['/admin', product.furniture_category_id, product.id, 'edit']);
   }
 
   addProduct() {
-    this.router.navigate(['admin/new']);
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
+
+  deleteProduct(product: Product) {
+    alert('Are you sure you want to delete this product?');
+    this.adminService.deleteProduct(product.furniture_category_id, product.id);
+    this.adminService.getProducts(product.furniture_category_id);
+  }
+
 }

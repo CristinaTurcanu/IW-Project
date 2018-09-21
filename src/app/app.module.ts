@@ -32,7 +32,7 @@ import { AdminProductsComponent } from './components/admin/admin-products/admin-
 import { AdminProductEditComponent } from './components/admin/admin-product-edit/admin-product-edit.component';
 import { AdminStartComponent } from './components/admin/admin-start/admin-start.component';
 import { ProductsStartComponent } from './components/products/products-start/products-start.component';
-import { AdminCreateComponent } from './admin/admin-create/admin-create.component';
+import { AdminCreateComponent } from './components/admin/admin-create/admin-create.component';
 
 @NgModule({
   declarations: [

@@ -12,10 +12,24 @@ export class ServerService {
   getCategories() {
     return this.http.get(this.apiCategories);
   }
+
   getProducts(cid) {
     return this.http.get(this.apiCategories + '/' + cid + '/' + 'furnitures');
   }
+
   getProduct(cid, fid) {
     return this.http.get(this.apiCategories + '/' + cid + '/' + 'furnitures/' + fid);
+  }
+
+  addProduct(cid, product) {
+    return this.http.post(this.apiCategories + '/' + cid + '/furnitures', product);
+  }
+
+  updateProduct(cid, fid, product) {
+    return this.http.put(this.apiCategories + '/' + cid + '/' + 'furnitures/' + fid, product);
+  }
+
+  deteleProduct(cid, fid) {
+    return this.http.delete(this.apiCategories + '/' + cid + '/' + 'furnitures/' + fid);
   }
 }

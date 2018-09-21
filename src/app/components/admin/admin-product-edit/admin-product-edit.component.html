@@ -1,4 +1,4 @@
-
+<h2>Edit products</h2>
 <div class='card'
   *ngIf='product'>
   <div class='card-header'>
@@ -41,8 +41,8 @@
       <hr>
       <br>
       <div class="row">
-        <button class="col-md-3 btn save" (click)="onSaveChanges(product)">Save changes</button>
-        <button class="col-md-3 btn del" (click)="onDeleteProduct(product)">Delete</button>
+        <button class="col-md-3 btn save" (click)="saveChanges(product)">Save changes</button>
+        <!-- <button class="col-md-3 btn del" (click)="deleteProduct(product)">Reset</button> -->
       </div>
     </div>
   </div>

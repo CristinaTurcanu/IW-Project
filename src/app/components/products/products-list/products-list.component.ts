@@ -1,9 +1,10 @@
+import { Product } from './../../../models/product.model';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { WishlistService } from './../../wishlist/wishlist.service';
 import { ShoppingCartService } from './../../shopping-cart/shopping-cart.service';
 import { ServerService } from './../../../server-service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Product } from '../../../models/product.model';
+import {assign, map, isEqual} from 'lodash';
 
 @Component({
   selector: 'app-products-list',
@@ -62,6 +63,13 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     if (product.availability === 'Out of Stock' || product.availability === 'Not Available') {
       return true;
     }
+  }
+
+  selectFavoriteProduct(product) {
+    const newEntity = assign(product, {favorite: !product.favorite});
+    this.apiProducts = map(this.apiProducts, (entity) => {
+      return !isEqual(product, entity) ? entity : newEntity;
+    });
   }
 
   addToCart(product: Product) {

@@ -12,6 +12,12 @@ import { AdminService } from '../admin.service';
 export class AdminProductEditComponent implements OnInit {
   product;
   pageTitle = 'Edit product';
+  allAvailability = [
+    { status: 'In Stock'},
+    { status: 'Limited Stock'},
+    { status: 'Out of Stock'},
+    { status: 'Not Available'},
+  ];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -31,9 +37,9 @@ export class AdminProductEditComponent implements OnInit {
     .subscribe(product => this.product = product);
   }
 
-  saveChanges(product: Product) {
-    alert('Do you want to update this product?');
-    this.adminService.saveChanges(product.furniture_category_id, product.id, product);
+  updateProduct(product: Product) {
+    confirm('Do you want to update this product?');
+    this.adminService.updateProduct(product.furniture_category_id, product.id, product);
     this.adminService.getProducts(product.furniture_category_id);
     this.onCancel();
   }

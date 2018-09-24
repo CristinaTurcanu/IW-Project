@@ -1,0 +1,14 @@
+<form class="form-inline" #newCategoryForm="ngForm" (ngSubmit)="onSubmit(newCategoryForm.value)">
+  <div class="form-group">
+    <div>
+      <input
+        type="text"
+        ngModel
+        name="name"
+        class="form-control"
+        id="inputName"
+        placeholder="Category Name">
+    </div>
+  </div>
+  <button type="submit" class="btn">Add</button>
+</form>

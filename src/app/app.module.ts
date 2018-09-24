@@ -32,7 +32,10 @@ import { AdminProductsComponent } from './components/admin/admin-products/admin-
 import { AdminProductEditComponent } from './components/admin/admin-product-edit/admin-product-edit.component';
 import { AdminStartComponent } from './components/admin/admin-start/admin-start.component';
 import { ProductsStartComponent } from './components/products/products-start/products-start.component';
-import { AdminCreateComponent } from './components/admin/admin-create/admin-create.component';
+import { AdminCreateProductComponent } from './components/admin/admin-create-product/admin-create-product.component';
+import { AdminCreateCategoryComponent } from './components/admin/admin-create-category/admin-create-category.component';
+import { AdminManageCategoriesComponent } from './components/admin/admin-manage-categories/admin-manage-categories.component';
+import { AdminCategoryEditComponent } from './components/admin/admin-category-edit/admin-category-edit.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,10 @@ import { AdminCreateComponent } from './components/admin/admin-create/admin-crea
     AdminProductEditComponent,
     AdminStartComponent,
     ProductsStartComponent,
-    AdminCreateComponent
+    AdminCreateProductComponent,
+    AdminCreateCategoryComponent,
+    AdminManageCategoriesComponent,
+    AdminCategoryEditComponent
   ],
   imports: [
     BrowserModule,

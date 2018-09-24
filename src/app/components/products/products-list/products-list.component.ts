@@ -91,14 +91,3 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   }
 }
 
-  // getProduct(product) {
-  //   this.productReceived.emit(product);
-  // }
-
-  // addToCart(product) {
-  //   this.addedToCart.emit(product);
-  // }
-
-  // addToWishlist(product) {
-  //   this.addedToWishlist.emit(product);
-  // }

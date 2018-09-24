@@ -25,7 +25,14 @@
 
       <div class='row'>
         <div class='col-md-3 field'>Availability:</div>
-        <input type="text" class="col-md-9" [(ngModel)]="product.availability">
+        <select
+          name="availability"
+          [(ngModel)]="product.availability"
+          id="availability"
+          class="form-control col-md-9">
+        <option *ngFor="let availability of allAvailability" [value]="availability.status">{{ availability.status }}</option>
+      </select>
+        <!-- <input type="text" class="col-md-9" [(ngModel)]="product.availability"> -->
       </div>
 
       <div class='row'>
@@ -41,8 +48,7 @@
       <hr>
       <br>
       <div class="row">
-        <button class="col-md-3 btn save" (click)="saveChanges(product)">Save changes</button>
-        <!-- <button class="col-md-3 btn del" (click)="deleteProduct(product)">Reset</button> -->
+        <button class="col-md-3 btn save" (click)="updateProduct(product)">Save changes</button>
       </div>
     </div>
   </div>

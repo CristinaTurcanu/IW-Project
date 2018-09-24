@@ -1,3 +1,4 @@
+import { ICategory } from './../../models/category.model';
 import { HttpClient } from '@angular/common/http';
 import { ServerService } from './../../server-service';
 import { Product } from './../../models/product.model';
@@ -15,6 +16,11 @@ export class AdminService {
   categoryUrl = 'http://iw-internship.herokuapp.com/api/v1/furniture-categories/';
 
   constructor(private serverService: ServerService) {}
+
+  getCategories() {
+  this.serverService.getCategories()
+    .subscribe(categories => this.apiCategories = categories);
+  }
 
   getUpdatedProducts(cid) {
     this.serverService.getProducts(cid).subscribe(
@@ -37,15 +43,31 @@ export class AdminService {
 
   addNewProduct(cid, product: Product) {
     this.serverService.addProduct(cid, product)
-      .subscribe(response => console.log(response));
+      .subscribe();
   }
 
-  saveChanges(cid, fid, product: Product) {
+  updateProduct(cid, fid, product: Product) {
     this.serverService.updateProduct(cid, fid, product)
       .subscribe();
   }
+
   deleteProduct(cid, fid) {
     this.serverService.deteleProduct(cid, fid)
+      .subscribe();
+  }
+
+  addNewcategory(category: ICategory) {
+    this.serverService.addCategory(category)
+      .subscribe();
+  }
+
+  updateCategory(cid, category: ICategory) {
+    this.serverService.updateCategory(cid, category)
+    .subscribe();
+  }
+
+  deleteCategory(cid) {
+    this.serverService.deleteCategory(cid)
       .subscribe();
   }
 }

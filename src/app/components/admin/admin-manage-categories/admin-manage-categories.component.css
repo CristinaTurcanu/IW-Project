@@ -1,0 +1,19 @@
+.table {
+  margin-top: 5px;
+  font-size: 15px;
+}
+i {
+  cursor: pointer;
+  font-size: 20px;
+}
+td {
+  max-width: 430px;
+}
+button {
+  margin-top: 20px;
+  background-color: #fff;
+  color: #333;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

@@ -1,4 +1,3 @@
-import { AdminCreateComponent } from './components/admin/admin-create/admin-create.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -16,7 +15,10 @@ import { AdminProductEditComponent } from './components/admin/admin-product-edit
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { ProductsStartComponent } from './components/products/products-start/products-start.component';
 import { AdminStartComponent } from './components/admin/admin-start/admin-start.component';
-
+import { AdminCreateCategoryComponent } from './components/admin/admin-create-category/admin-create-category.component';
+import { AdminCreateProductComponent } from './components/admin/admin-create-product/admin-create-product.component';
+import { AdminManageCategoriesComponent } from './components/admin/admin-manage-categories/admin-manage-categories.component';
+import { AdminCategoryEditComponent } from './components/admin/admin-category-edit/admin-category-edit.component';
 
 const appRoutes: Routes = [
   { path : '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,8 +32,11 @@ const appRoutes: Routes = [
   { path : 'account', component: AccountComponent },
   { path : 'signIn', component: SignInComponent },
   { path : 'admin', component: AdminComponent, children: [
-    { path : ':cid/new', component: AdminCreateComponent},
+    { path : 'categories', component: AdminManageCategoriesComponent},
+    { path : 'categories/new', component: AdminCreateCategoryComponent},
+    { path : ':cid/edit', component: AdminCategoryEditComponent},
     { path : '', component: AdminStartComponent},
+    { path : ':cid/new', component: AdminCreateProductComponent},
     { path : ':cid', component: AdminProductsComponent},
     { path : ':cid/:fid/edit', component: AdminProductEditComponent},
   ]},
@@ -41,7 +46,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'})
   ],
   exports: [
     RouterModule

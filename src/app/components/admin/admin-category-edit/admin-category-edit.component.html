@@ -1,0 +1,27 @@
+<h2>Edit categories</h2>
+<div class='card'>
+  <div class='card-header'>
+  {{pageTitle + ': ' + category.name}}
+  </div>
+  <div class='card-body'>
+    <div class='row'>
+    <div class='col-md-8'>
+
+      <div class='row'>
+        <div class='col-md-3 field'>Name:</div>
+        <input type="text" class="col-md-9" [(ngModel)]="category.name">
+      </div>
+
+      <div class='row'>
+        <div class='col-md-3 field'>Visibility:</div>
+        <input type="text" class="col-md-9" [(ngModel)]="category.visible">
+      </div>
+
+      <hr>
+      <br>
+      <div class="row">
+        <button class="col-md-3 btn save" (click)="updateCategory(category)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

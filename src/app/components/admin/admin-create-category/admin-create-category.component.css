@@ -1,0 +1,11 @@
+form {
+  margin-top: 10px;
+}
+form input{
+  font-size: 22px;
+}
+form button {
+  background-color: rgb(212, 195, 148);
+  color: #222;
+  font-size: 18px;
+}

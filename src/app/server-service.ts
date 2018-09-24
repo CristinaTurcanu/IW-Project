@@ -13,6 +13,23 @@ export class ServerService {
     return this.http.get(this.apiCategories);
   }
 
+  getCategory(cid) {
+    return this.http.get(this.apiCategories + '/' + cid);
+  }
+
+  addCategory(category) {
+    return this.http.post(this.apiCategories, category);
+  }
+
+  deleteCategory(cid) {
+    return this.http.delete(this.apiCategories + '/' + cid);
+  }
+
+  updateCategory(cid, category) {
+    return this.http.put(this.apiCategories + '/' + cid, category);
+  }
+
+
   getProducts(cid) {
     return this.http.get(this.apiCategories + '/' + cid + '/' + 'furnitures');
   }
@@ -32,4 +49,6 @@ export class ServerService {
   deteleProduct(cid, fid) {
     return this.http.delete(this.apiCategories + '/' + cid + '/' + 'furnitures/' + fid);
   }
+
+
 }

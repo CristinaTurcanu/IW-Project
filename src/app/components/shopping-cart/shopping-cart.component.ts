@@ -58,10 +58,9 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.deleteProduct(product.id);
     this.cartService.updateCart();
     document.getElementById(product.id).style.display = 'none';
-    // this.router.navigateByUrl('/reload');
     this.totalSum -= (product.price * product.quantity);
     this.totalQuantity -= product.quantity;
-    if (this.cart.products.length < 1) {
+      if (this.cart.products.length < 1) {
       return this.totalSum = 0;
     }
   }

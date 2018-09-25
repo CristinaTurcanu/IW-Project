@@ -1,4 +1,4 @@
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ServerService } from './../../../server-service';
 import { Component, OnInit } from '@angular/core';
 

@@ -55,13 +55,56 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   deleteProduct(product) {
-    this.cartService.deleteProduct(product.id);
-    this.cartService.updateCart();
-    document.getElementById(product.id).style.display = 'none';
-    this.totalSum -= (product.price * product.quantity);
-    this.totalQuantity -= product.quantity;
-      if (this.cart.products.length < 1) {
-      return this.totalSum = 0;
+    this.cartService.deleteProduct(product);
+    this.cart = JSON.parse(localStorage.getItem('cart'));
+    this.getTotalSum();
+    this.getTotalQuantity();
+    this.newCounterValue();
+    return [...this.cart.products];
     }
   }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // deleteProduct(product) {
+    // this.cartService.deleteProduct(product.id);
+    // this.cartService.updateCart();
+    // document.getElementById(product.id).style.display = 'none';
+    // this.totalSum -= (product.price * product.quantity);
+    // this.totalQuantity -= product.quantity;
+    //   if (this.cart.products.length < 1) {
+    //   return this.totalSum = 0;
+    // }
+  // }
+

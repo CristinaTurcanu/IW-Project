@@ -19,6 +19,7 @@ import { AdminCreateCategoryComponent } from './components/admin/admin-create-ca
 import { AdminCreateProductComponent } from './components/admin/admin-create-product/admin-create-product.component';
 import { AdminManageCategoriesComponent } from './components/admin/admin-manage-categories/admin-manage-categories.component';
 import { AdminCategoryEditComponent } from './components/admin/admin-category-edit/admin-category-edit.component';
+import { AdminProductComponent } from './components/admin/admin-product/admin-product.component';
 
 const appRoutes: Routes = [
   { path : '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,13 +33,13 @@ const appRoutes: Routes = [
   { path : 'account', component: AccountComponent },
   { path : 'signIn', component: SignInComponent },
   { path : 'admin', component: AdminComponent, children: [
+    { path : '', component: AdminStartComponent},
     { path : 'categories', component: AdminManageCategoriesComponent},
     { path : 'categories/new', component: AdminCreateCategoryComponent},
     { path : ':cid/edit', component: AdminCategoryEditComponent},
-    { path : '', component: AdminStartComponent},
-    { path : ':cid/new', component: AdminCreateProductComponent},
-    { path : ':cid', component: AdminProductsComponent},
-    { path : ':cid/:fid/edit', component: AdminProductEditComponent},
+    { path : ':cid/new', component: AdminProductComponent},
+    { path : ':cid/:fid/edit', component: AdminProductComponent},
+    { path : ':cid', component: AdminProductsComponent}
   ]},
   { path : 'wishlist', component: WishlistComponent },
   { path : 'shopping-cart', component: ShoppingCartComponent }
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'})
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [
     RouterModule

@@ -1,12 +1,12 @@
   <div class="container">
   <h2>Add a new product</h2>
-  <form #newProductForm="ngForm" (ngSubmit)="onSubmit(newProductForm.value)">
+  <form [formGroup]="newProductForm" (ngSubmit)="onSubmit(newProductForm.value)">
 
     <div class="form-group row">
       <label for="category" class="col-sm-2 col-form-label">Category</label>
       <select
         name="furniture_category_id"
-        ngModel
+        formControlName="category"
         id="category"
         class="form-control col-sm-8">
         <option *ngFor="let category of apiCategories" [value]="category.id">{{ category.name }}</option>
@@ -18,16 +18,19 @@
       <input
         type="text"
         name="name"
-        ngModel
+        formControlName="name"
         id="name"
         class="form-control col-sm-8">
+        <span
+          *ngIf="!newProductForm.get('name').valid && newProductForm.get('name').touched"
+          class="help-block">Please enter a valid name</span>
     </div>
 
     <div class="form-group row">
       <label for="description" class="col-sm-2 col-form-label">Description</label>
       <textarea
         name="description"
-        ngModel
+        formControlName="description"
         id="description"
         class="form-control col-sm-8"
         rows="3"></textarea>
@@ -37,17 +40,11 @@
       <label for="availability" class="col-sm-2 col-form-label">Availability</label>
       <select
         name="availability"
-        ngModel
+        formControlName="availability"
         id="availability"
         class="form-control col-sm-8">
         <option *ngFor="let availability of allAvailability" [value]="availability.status">{{ availability.status }}</option>
       </select>
-      <!-- <input
-        name="availability"
-        ngModel
-        type="text"
-        id="availability"
-        class="form-control col-sm-8"> -->
     </div>
 
 
@@ -55,7 +52,7 @@
       <label for="color" class="col-sm-2 col-form-label">Color</label>
       <input
         name="color"
-        ngModel
+        formControlName="color"
         type="text"
         id="color"
         class="form-control col-sm-8">
@@ -66,17 +63,21 @@
       <label for="price" class="col-sm-2 col-form-label">Price</label>
       <input
         name="price"
-        ngModel
-        type="number"
+        formControlName="price"
+        pattern="^[1-9]+[0-9]*$"
+        type="text"
         id="price"
         class="form-control col-sm-8">
+        <span
+        *ngIf="!newProductForm.get('name').valid && newProductForm.get('name').touched"
+        class="help-block">Please enter a valid price</span>
     </div>
 
     <div class="form-group row">
       <label for="imagePath" class="col-sm-2 col-form-label">Image URL</label>
       <input
         name="img"
-        ngModel
+        formControlName="imageUrl"
         type="text"
         id="imagePath"
         class="form-control col-sm-8"
@@ -94,7 +95,8 @@
         <div class="col-md-6 col-sm-12">
           <button
             type="submit"
-            class="btn">Add New Product</button>
+            class="btn"
+            [disabled]="!newProductForm.valid">Add New Product</button>
           <button
             type="button"
             class="btn"

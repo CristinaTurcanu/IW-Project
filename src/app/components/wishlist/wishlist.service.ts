@@ -18,6 +18,7 @@ export class WishlistService implements OnInit {
   getProducts() {
     return [...this.wishlist.products];
   }
+
   addProduct(product: Product) {
     for (const prod of this.wishlist.products) {
       if (prod.id === product.id) {
@@ -30,18 +31,16 @@ export class WishlistService implements OnInit {
     }
     return this.updateWishlist();
   }
+
   updateWishlist() {
     localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
     return this.getProducts();
   }
+
   findProductIndex(product: Product) {
     return this.wishlist.products.indexOf(product);
   }
-  // deleteProduct(id: number) {
-  //   this.wishlist.products = this.wishlist.products
-  //     .filter(product => product.id !== id);
-  //   return this.getProducts();
-  // }
+
   deleteProduct(product: Product) {
     this.wishlist.products.splice(this.findProductIndex(product), 1);
     return this.updateWishlist();

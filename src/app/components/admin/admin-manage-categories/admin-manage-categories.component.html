@@ -4,6 +4,7 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Name</th>
+        <th scope="col">Products</th>
         <th scope="col">Visibility</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -13,6 +14,7 @@
       <tr *ngFor="let category of apiCategories">
         <th scope="row">{{ category.id }}</th>
         <td>{{ category.name }}</td>
+        <td>{{ getProductsNumber(category) }}</td>
         <td>{{ category.visible }}</td>
         <td><i class="fa fa-edit" (click)="editCategory(category)"></i></td>
         <td><i class="fa fa-trash" (click)="deleteCategory(category)"></i></td>

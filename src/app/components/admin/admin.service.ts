@@ -30,10 +30,11 @@ export class AdminService {
   }
 
   getProducts(cid) {
-    this.serverService.getProducts(cid).subscribe(
-      products => {
-      return this.apiProducts = products;
-    });
+    // this.serverService.getProducts(cid).subscribe(
+    //   products => {
+    //   return this.apiProducts = products;
+    // });
+    return this.serverService.getProducts(cid);
   }
 
   getProduct(cid, fid) {
@@ -52,8 +53,7 @@ export class AdminService {
   }
 
   deleteProduct(cid, fid) {
-    this.serverService.deteleProduct(cid, fid)
-      .subscribe();
+    return this.serverService.deteleProduct(cid, fid);
   }
 
   addNewcategory(category: ICategory) {
@@ -67,7 +67,6 @@ export class AdminService {
   }
 
   deleteCategory(cid) {
-    this.serverService.deleteCategory(cid)
-      .subscribe();
+    return this.serverService.deleteCategory(cid);
   }
 }

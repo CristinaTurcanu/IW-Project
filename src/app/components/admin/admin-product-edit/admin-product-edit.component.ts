@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from './../../../server-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../admin.service';
+import { switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -11,6 +13,7 @@ import { AdminService } from '../admin.service';
 })
 export class AdminProductEditComponent implements OnInit {
   product;
+  apiProducts;
   pageTitle = 'Edit product';
   allAvailability = [
     { status: 'In Stock'},
@@ -40,7 +43,10 @@ export class AdminProductEditComponent implements OnInit {
   updateProduct(product: Product) {
     confirm('Do you want to update this product?');
     this.adminService.updateProduct(product.furniture_category_id, product.id, product);
-    this.adminService.getProducts(product.furniture_category_id);
+    this.adminService.getProducts(product.furniture_category_id).pipe(
+      switchMap(res =>  this.serverService.getProducts(product.furniture_category_id)),
+      catchError(err => of(err))
+    ).subscribe(products => this.apiProducts = products);
     this.onCancel();
   }
 

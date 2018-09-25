@@ -57,8 +57,12 @@ export class ShoppingCartService {
     return this.cart.products.indexOf(product);
   }
 
-  deleteProduct(id: number) {
-    this.cart.products = this.cart.products
-      .filter(product => product.id !== id);
+  // deleteProduct(id: number) {
+  //   return this.cart.products = this.cart.products
+  //     .filter(product => product.id !== id);
+  // }
+  deleteProduct(product) {
+    this.cart.products.splice(this.findProductIndex(product), 1);
+    return this.updateCart();
   }
 }

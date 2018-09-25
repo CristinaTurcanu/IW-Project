@@ -36,6 +36,7 @@ import { AdminCreateProductComponent } from './components/admin/admin-create-pro
 import { AdminCreateCategoryComponent } from './components/admin/admin-create-category/admin-create-category.component';
 import { AdminManageCategoriesComponent } from './components/admin/admin-manage-categories/admin-manage-categories.component';
 import { AdminCategoryEditComponent } from './components/admin/admin-category-edit/admin-category-edit.component';
+import { AdminProductComponent } from './components/admin/admin-product/admin-product.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AdminCategoryEditComponent } from './components/admin/admin-category-ed
     AdminCreateProductComponent,
     AdminCreateCategoryComponent,
     AdminManageCategoriesComponent,
-    AdminCategoryEditComponent
+    AdminCategoryEditComponent,
+    AdminProductComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,7 @@ import { AdminCategoryEditComponent } from './components/admin/admin-category-ed
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

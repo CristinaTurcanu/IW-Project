@@ -2,7 +2,9 @@ import { AdminService } from './../admin.service';
 import { ServerService } from './../../../server-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from './../../../models/product.model';
-import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-admin-products',
@@ -29,10 +31,10 @@ export class AdminProductsComponent implements OnInit {
   }
 
   getProducts(cid) {
-    this.serverService.getProducts(cid).subscribe(
-      products => {
-      return this.apiProducts = products;
-    });
+    this.serverService.getProducts(cid)
+      .subscribe(products => {
+        return this.apiProducts = products;
+      });
   }
 
   editProduct(product: Product) {
@@ -45,8 +47,10 @@ export class AdminProductsComponent implements OnInit {
 
   deleteProduct(product: Product) {
     confirm('Are you sure you want to delete this product?');
-    this.adminService.deleteProduct(product.furniture_category_id, product.id);
-    this.adminService.getProducts(product.furniture_category_id);
+    this.adminService.deleteProduct(product.furniture_category_id, product.id).pipe(
+      switchMap(res =>  this.serverService.getProducts(product.furniture_category_id)),
+      catchError(err => of(err))
+    ).subscribe(products => this.apiProducts = products);
   }
 
 }

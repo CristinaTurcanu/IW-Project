@@ -31,7 +31,9 @@ export class WishlistComponent implements OnInit {
   }
 
   deleteProduct(product) {
-    document.getElementById(product.id).style.display = 'none';
+    // document.getElementById(product.id).style.display = 'none';
     this.wishService.deleteProduct(product);
+    this.wishlist = JSON.parse(localStorage.getItem('wishlist'));
+    return [...this.wishlist.products];
   }
 }

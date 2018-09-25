@@ -1,9 +1,11 @@
 import { ServerService } from './../../../server-service';
 import { AdminService } from './../admin.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from './../../../models/product.model';
 import { Component, OnInit } from '@angular/core';
+import { of } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-create-product',
@@ -12,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminCreateProductComponent implements OnInit {
   apiCategories;
+  apiProducts;
   product: Product;
   pageTitle: 'You are creating';
   newProductForm: FormGroup;
@@ -33,11 +36,25 @@ export class AdminCreateProductComponent implements OnInit {
     .subscribe(categories => {
       return this.apiCategories = categories;
     });
+
+    this.newProductForm = new FormGroup({
+      'category': new FormControl(null, Validators.required),
+      'name': new FormControl(null, Validators.required),
+      'description': new FormControl(null, Validators.required),
+      'availability': new FormControl('In Stock', Validators.required),
+      'color': new FormControl(null, Validators.required),
+      'price': new FormControl(null, Validators.required),
+      'imageUrl': new FormControl(null)
+    });
   }
 
   onSubmit(product: Product) {
+    console.log(this.newProductForm);
     this.adminService.addNewProduct(product.furniture_category_id, product);
-    this.adminService.getProducts(product.furniture_category_id);
+    this.adminService.getProducts(product.furniture_category_id).pipe(
+      switchMap(res =>  this.serverService.getProducts(product.furniture_category_id)),
+      catchError(err => of(err))
+    ).subscribe(products => this.apiProducts = products);
     this.onCancel();
   }
 

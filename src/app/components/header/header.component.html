@@ -23,7 +23,7 @@
       </ul>
       <ul class="nav navbar-nav mr-0 user">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" (mouseover)="toggleUser()"><i class="fa fa-user"></i></a>
+          <a class="nav-link dropdown-toggle" (click)="toggleUser()"><i class="fa fa-user"></i></a>
           <div class="dropdown-menu" [ngClass]="{ 'show': dropDownOpen }">
             <a class="dropdown-item" routerLink="/signIn">Sign Up</a>
             <a class="dropdown-item" routerLink="/account">Create account</a>

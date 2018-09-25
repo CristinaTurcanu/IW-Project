@@ -29,7 +29,6 @@ export class ServerService {
     return this.http.put(this.apiCategories + '/' + cid, category);
   }
 
-
   getProducts(cid) {
     return this.http.get(this.apiCategories + '/' + cid + '/' + 'furnitures');
   }

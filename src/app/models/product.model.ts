@@ -10,5 +10,5 @@ export interface Product {
   quantity: number;
   total: number;
   favorite: boolean;
-  imagePath?: string;
+  imageUrl?: string;
 }

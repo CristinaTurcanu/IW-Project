@@ -55,8 +55,4 @@ export class AdminManageCategoriesComponent implements OnInit {
   addNewCategory() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
-
-  getProductsNumber() {
-  }
-
 }

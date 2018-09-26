@@ -1,11 +1,10 @@
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, map } from 'rxjs/operators';
 import { ServerService } from './../../../server-service';
 import { AdminService } from './../admin.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Product } from './../../../models/product.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { of, Subscription } from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-admin-product',
@@ -14,24 +13,33 @@ import { of, Subscription } from 'rxjs';
 })
 export class AdminProductComponent implements OnInit {
   apiCategories;
-  cid: number;
-  fid: number;
-  newProductForm: FormGroup;
+  apiProducts;
+  product: any;
+  cid: any;
+  fid: any;
   editMode = false;
-  subscription: Subscription;
   allAvailability = [
     { status: 'In Stock'},
     { status: 'Limited Stock'},
     { status: 'Out of Stock'},
     { status: 'Not Available'},
   ];
-  product: any;
 
-  constructor(private router: Router,
+  productForm = this.fb.group({
+    furniture_category_id: ['', Validators.required],
+    name: ['', Validators.required],
+    description: ['', Validators.required],
+    availability: ['In Stock', Validators.required],
+    color: [''],
+    price: ['', [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]],
+    imageUrl: ['']
+  });
+
+  constructor(private fb: FormBuilder,
+              private router: Router,
               private route: ActivatedRoute,
               private adminService: AdminService,
-              private serverService: ServerService) {
-              }
+              private serverService: ServerService) {}
 
   ngOnInit() {
     this.serverService.getCategories()
@@ -39,25 +47,21 @@ export class AdminProductComponent implements OnInit {
       this.apiCategories = categories;
     });
 
-    let cid = this.route.snapshot.paramMap.get['cid'];
-    let fid = this.route.snapshot.paramMap.get['fid'];
-    this.subscription = this.route.params
-      .subscribe(params => {
-        cid = +params['cid'];
-        fid = +params['fid'];
-        this.editMode = params['fid'] != null;
-        this.getProduct(cid, fid);
-      });
+    this.cid = this.route.snapshot.paramMap.get['cid'];
+    this.fid = this.route.snapshot.paramMap.get['fid'];
 
-    this.newProductForm = new FormGroup({
-      'category': new FormControl(null, Validators.required),
-      'name': new FormControl(null, Validators.required),
-      'description': new FormControl(null, Validators.required),
-      'availability': new FormControl('In Stock', Validators.required),
-      'color': new FormControl(null, Validators.required),
-      'price': new FormControl(null, Validators.required),
-      'imageUrl': new FormControl(null)
-    });
+    this.route.params
+      .subscribe(params => {
+        this.cid = params.cid;
+        this.fid = params.fid || null;
+
+        this.editMode = params.fid || null;
+
+        if (this.editMode) {
+          this.getProduct(this.cid, this.fid);
+        }
+        this.initForm();
+      });
   }
 
   getProduct(cid, fid) {
@@ -69,43 +73,36 @@ export class AdminProductComponent implements OnInit {
   }
 
   private initForm() {
-    let category;
-    let name = '';
-    let description = '';
-    let availability = '';
-    let color = '';
-    let price: number;
-    let imageUrl = '';
-
     if (this.editMode) {
-      category = this.product.furniture_category_id;
-      name = this.product.name;
-      description = this.product.description;
-      availability = this.product.availability;
-      color = this.product.color;
-      price = this.product.price;
-      imageUrl = this.product.imageUrl;
+      this.productForm.patchValue(this.product);
+    } else {
+      this.productForm.get('furniture_category_id').setValue(this.cid);
     }
-
-    this.newProductForm = new FormGroup({
-      'category': new FormControl(category),
-      'name': new FormControl(name),
-      'description': new FormControl(description),
-      'availability': new FormControl(availability),
-      'color': new FormControl(color),
-      'price': new FormControl(price),
-      'imageUrl': new FormControl(imageUrl)
-    });
   }
 
-  onSubmit(product: Product) {
-    console.log(this.newProductForm);
-    // this.adminService.addNewProduct(product.furniture_category_id, product);
-    // this.adminService.getProducts(product.furniture_category_id).pipe(
-    //   switchMap(res =>  this.serverService.getProducts(product.furniture_category_id)),
-    //   catchError(err => of(err))
-    // ).subscribe(products => this.apiProducts = products);
-    this.onCancel();
+  onSubmit() {
+    const form = this.productForm.getRawValue();
+
+    if (this.editMode) {
+      this.adminService.updateProduct(this.cid, this.fid, form).subscribe(test => {
+        this.router.navigate(['../../'], {relativeTo: this.route });
+      });
+
+      this.adminService.getProducts(this.cid).pipe(
+        switchMap(res =>  this.serverService.getProducts(this.cid)),
+        catchError(err => of(err))
+      ).subscribe(products => this.apiProducts = products);
+
+    } else {
+      this.adminService.addNewProduct(this.cid, form).subscribe(test => {
+        this.router.navigate(['../'], {relativeTo: this.route });
+      });
+
+      this.adminService.getProducts(this.cid).pipe(
+        switchMap(res =>  this.serverService.getProducts(this.cid)),
+        catchError(err => of(err))
+      ).subscribe(products => this.apiProducts = products);
+    }
   }
 
   onCancel() {

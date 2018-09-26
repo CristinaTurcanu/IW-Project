@@ -11,15 +11,12 @@ import { ProductDetailsComponent } from './components/products/product-details/p
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProductsListComponent } from './components/products/products-list/products-list.component';
-import { AdminProductEditComponent } from './components/admin/admin-product-edit/admin-product-edit.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { ProductsStartComponent } from './components/products/products-start/products-start.component';
 import { AdminStartComponent } from './components/admin/admin-start/admin-start.component';
-import { AdminCreateCategoryComponent } from './components/admin/admin-create-category/admin-create-category.component';
-import { AdminCreateProductComponent } from './components/admin/admin-create-product/admin-create-product.component';
 import { AdminManageCategoriesComponent } from './components/admin/admin-manage-categories/admin-manage-categories.component';
-import { AdminCategoryEditComponent } from './components/admin/admin-category-edit/admin-category-edit.component';
 import { AdminProductComponent } from './components/admin/admin-product/admin-product.component';
+import { AdminCategoryComponent } from './components/admin/admin-category/admin-category.component';
 
 const appRoutes: Routes = [
   { path : '', redirectTo: '/home', pathMatch: 'full' },
@@ -35,8 +32,8 @@ const appRoutes: Routes = [
   { path : 'admin', component: AdminComponent, children: [
     { path : '', component: AdminStartComponent},
     { path : 'categories', component: AdminManageCategoriesComponent},
-    { path : 'categories/new', component: AdminCreateCategoryComponent},
-    { path : ':cid/edit', component: AdminCategoryEditComponent},
+    { path : 'categories/new', component: AdminCategoryComponent},
+    { path : ':cid/edit', component: AdminCategoryComponent},
     { path : ':cid/new', component: AdminProductComponent},
     { path : ':cid/:fid/edit', component: AdminProductComponent},
     { path : ':cid', component: AdminProductsComponent}

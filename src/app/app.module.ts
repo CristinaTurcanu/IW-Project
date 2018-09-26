@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastModule } from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -29,14 +30,11 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminCategoriesComponent } from './components/admin/admin-categories/admin-categories.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
-import { AdminProductEditComponent } from './components/admin/admin-product-edit/admin-product-edit.component';
 import { AdminStartComponent } from './components/admin/admin-start/admin-start.component';
 import { ProductsStartComponent } from './components/products/products-start/products-start.component';
-import { AdminCreateProductComponent } from './components/admin/admin-create-product/admin-create-product.component';
-import { AdminCreateCategoryComponent } from './components/admin/admin-create-category/admin-create-category.component';
 import { AdminManageCategoriesComponent } from './components/admin/admin-manage-categories/admin-manage-categories.component';
-import { AdminCategoryEditComponent } from './components/admin/admin-category-edit/admin-category-edit.component';
 import { AdminProductComponent } from './components/admin/admin-product/admin-product.component';
+import { AdminCategoryComponent } from './components/admin/admin-category/admin-category.component';
 
 @NgModule({
   declarations: [
@@ -64,14 +62,11 @@ import { AdminProductComponent } from './components/admin/admin-product/admin-pr
     AdminComponent,
     AdminCategoriesComponent,
     AdminProductsComponent,
-    AdminProductEditComponent,
     AdminStartComponent,
     ProductsStartComponent,
-    AdminCreateProductComponent,
-    AdminCreateCategoryComponent,
     AdminManageCategoriesComponent,
-    AdminCategoryEditComponent,
-    AdminProductComponent
+    AdminProductComponent,
+    AdminCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +74,8 @@ import { AdminProductComponent } from './components/admin/admin-product/admin-pr
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

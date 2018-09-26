@@ -39,7 +39,8 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     let cid = this.route.snapshot.paramMap.get['cid'];
     this.subscription = this.route.params
       .subscribe(params => {
-        cid = +params['cid'];
+        // cid = +params['cid'];
+        cid = parseInt(params['cid'], 10);
         this.getProducts(cid);
       });
   }
@@ -48,9 +49,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     this.serverService.getProducts(cid)
       .subscribe(products => {
         return this.apiProducts = products;
-        // this.apiProducts.map(prod => {
-        //   prod.quantity = +this.defaultOption;
-        // });
       });
   }
 

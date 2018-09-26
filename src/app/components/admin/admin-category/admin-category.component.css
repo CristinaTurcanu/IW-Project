@@ -5,8 +5,7 @@ button {
   background-color: rgba(236, 236, 236, 0.5);
   color: #333;
 }
-input.ng-invalid.ng-touched,
-textarea.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched{
   border: 1px solid rgb(218, 119, 119);
 }
 span.help-block {

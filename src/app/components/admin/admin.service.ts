@@ -1,5 +1,4 @@
 import { ICategory } from './../../models/category.model';
-import { HttpClient } from '@angular/common/http';
 import { ServerService } from './../../server-service';
 import { Product } from './../../models/product.model';
 import { Injectable } from '@angular/core';
@@ -30,10 +29,6 @@ export class AdminService {
   }
 
   getProducts(cid) {
-    // this.serverService.getProducts(cid).subscribe(
-    //   products => {
-    //   return this.apiProducts = products;
-    // });
     return this.serverService.getProducts(cid);
   }
 
@@ -43,13 +38,11 @@ export class AdminService {
   }
 
   addNewProduct(cid, product: Product) {
-    this.serverService.addProduct(cid, product)
-      .subscribe();
+    return this.serverService.addProduct(cid, product);
   }
 
   updateProduct(cid, fid, product: Product) {
-    this.serverService.updateProduct(cid, fid, product)
-      .subscribe();
+    return this.serverService.updateProduct(cid, fid, product);
   }
 
   deleteProduct(cid, fid) {
@@ -57,13 +50,11 @@ export class AdminService {
   }
 
   addNewcategory(category: ICategory) {
-    this.serverService.addCategory(category)
-      .subscribe();
+    return this.serverService.addCategory(category);
   }
 
   updateCategory(cid, category: ICategory) {
-    this.serverService.updateCategory(cid, category)
-    .subscribe();
+    return this.serverService.updateCategory(cid, category);
   }
 
   deleteCategory(cid) {

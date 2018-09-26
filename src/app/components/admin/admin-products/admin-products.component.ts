@@ -53,4 +53,5 @@ export class AdminProductsComponent implements OnInit {
     ).subscribe(products => this.apiProducts = products);
   }
 
+
 }

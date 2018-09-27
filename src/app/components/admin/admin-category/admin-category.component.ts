@@ -30,11 +30,10 @@ export class AdminCategoryComponent implements OnInit {
               private serverService: ServerService) {}
 
   ngOnInit() {
-    this.cid = this.route.snapshot.paramMap.get['cid'];
-
     this.route.params.subscribe(params => {
-      this.cid = params.cid;
-      this.editMode = params['cid'] != null;
+      this.cid = params.cid || null;
+      this.editMode = this.cid;
+
       if (this.editMode) {
         this.getCategory(this.cid);
       }
@@ -59,8 +58,8 @@ export class AdminCategoryComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['/admin/categories']);
     this.adminService.getCategories();
+    this.router.navigate(['/admin/categories']);
   }
 
 }

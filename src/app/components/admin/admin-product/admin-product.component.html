@@ -31,7 +31,7 @@
       class="form-control col-sm-8"
       rows="3"></textarea>
       <span
-      *ngIf="!productForm.get('name').valid && productForm.get('name').touched"
+      *ngIf="!productForm.get('description').valid && productForm.get('description').touched"
       class="help-block col-sm-8">Description is mandatory</span>
   </div>
 
@@ -60,14 +60,13 @@
     <label for="price" class="col-sm-2 col-form-label">Price</label>
     <input
       formControlName="price"
-      pattern="^[1-9]+[0-9]*$"
+      pattern="[+-]?([0-9]*[.])?[0-9]+"
       type="text"
       id="price"
       class="form-control col-sm-8">
       <span
-        *ngIf="!productForm.get('name').valid && productForm.get('name').touched"
-        class="help-block">
-      </span>
+        *ngIf="!productForm.get('price').valid && productForm.get('price').touched"
+        class="help-block col-sm-8">Price is mandatory</span>
   </div>
 
   <!-- <div class="form-group row">
@@ -87,11 +86,14 @@
     </div>
   </div> -->
 
+  <ngb-alert *ngIf="message" type="success" (close)="message = null">{{ message }}</ngb-alert>
+
   <div class="row">
       <div class="col-md-6 col-sm-12">
         <button
           type="submit"
-          class="btn">Save</button>
+          class="btn"
+          [disabled]="!productForm.valid">Save</button>
         <button
           type="button"
           class="btn"

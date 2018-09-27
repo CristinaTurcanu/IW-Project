@@ -22,9 +22,9 @@
         </li>
       </ul>
       <ul class="nav navbar-nav mr-0 user">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" (click)="toggleUser()"><i class="fa fa-user"></i></a>
-          <div class="dropdown-menu" [ngClass]="{ 'show': dropDownOpen }">
+        <li class="nav-item" ngbDropdown>
+          <a class="nav-link"  ngbDropdownToggle><i class="fa fa-user"></i></a>
+          <div ngbDropdownMenu>
             <a class="dropdown-item" routerLink="/signIn">Sign Up</a>
             <a class="dropdown-item" routerLink="/account">Create account</a>
             <a class="dropdown-item" routerLink="/admin">Admin Page</a>

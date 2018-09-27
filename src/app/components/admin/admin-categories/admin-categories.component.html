@@ -1,4 +1,6 @@
 <div class="categories">
+  <button class="btn btnSetting" (click)="manageCategories()">Manage Categories</button>
+
   <button
     *ngFor="let category of apiCategories"
     (click)="getProducts(category.id)"
@@ -8,5 +10,4 @@
   </button>
   <br>
   <br>
-  <button class="btn" (click)="manageCategories()">Manage Categories</button>
 </div>

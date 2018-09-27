@@ -1,9 +1,9 @@
 <div class="table-responsive">
-  <table class="table table-hover">
+  <table class="table table-hover" matSort (matSortChange)="sortData($event)">
     <thead>
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
+        <th mat-sort-header="id" scope="col">Id</th>
+        <th mat-sort-header="name" scope="col">Name</th>
         <th scope="col">Visibility</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -15,7 +15,24 @@
         <td>{{ category.name }}</td>
         <td>{{ category.visible }}</td>
         <td><i class="fa fa-edit" (click)="editCategory(category)"></i></td>
-        <td><i class="fa fa-trash" (click)="deleteCategory(category)"></i></td>
+        <td><i class="fa fa-trash" (click)="openConfirmation(content)"></i></td>
+
+        <ng-template #content let-close="close()" let-dismiss="dismiss()">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Delete product</h4>
+            <button type="button" class="close" aria-label="Close" (click)="dismiss">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>You are about to delete <span>{{ category.name }}.</span></p>
+            <p>Do you want to proceed?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="deleteCategory(category)">Yes</button>
+            <button type="button" class="btn btn-outline-dark" (click)="close">No</button>
+          </div>
+        </ng-template>
       </tr>
     </tbody>
     <tfoot>
@@ -25,3 +42,4 @@
     </tfoot>
   </table>
 </div>
+

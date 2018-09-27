@@ -17,4 +17,19 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
+.modal-body {
+  padding: 5px 20px;
+}
+.modal-body span {
+  color: #222;
+  font-weight: bold;
+}
+.modal-footer {
+  height: 60px;
+}
+.modal-footer button{
+  width: 50%;
+}
+.modal-header button {
+  border: none;
+}

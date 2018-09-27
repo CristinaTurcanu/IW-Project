@@ -1,10 +1,12 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from './../admin.service';
 import { ServerService } from './../../../server-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from './../../../models/product.model';
 import { Component, OnInit, Input } from '@angular/core';
-import { switchMap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { switchMap, catchError, debounceTime } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { Sort } from '@angular/material';
 
 @Component({
   selector: 'app-admin-products',
@@ -14,12 +16,20 @@ import { of } from 'rxjs';
 export class AdminProductsComponent implements OnInit {
   @Input() apiProducts;
   @Input() product;
+  sortedData;
   subscription;
+  private _success = new Subject<string>();
+
+  staticAlertClosed = false;
+  message: string;
+
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private serverService: ServerService,
-              private adminService: AdminService) {}
+              private adminService: AdminService,
+              private modalService: NgbModal) {
+              }
 
   ngOnInit() {
     let cid = this.route.snapshot.paramMap.get['cid'];
@@ -28,6 +38,16 @@ export class AdminProductsComponent implements OnInit {
         cid = +params['cid'];
         this.getProducts(cid);
       });
+
+      this._success.subscribe((message) => this.message = message);
+      this._success.pipe(
+        debounceTime(7000)
+      ).subscribe(() => this.message = null);
+      if (this.getProducts) {}
+      this.changeSuccessMessage();
+  }
+  changeSuccessMessage() {
+    this._success.next('You successfully made a change');
   }
 
   getProducts(cid) {
@@ -45,12 +65,38 @@ export class AdminProductsComponent implements OnInit {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
+  openConfirmation(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
   deleteProduct(product: Product) {
-    confirm('Are you sure you want to delete this product?');
     this.adminService.deleteProduct(product.furniture_category_id, product.id).pipe(
       switchMap(res =>  this.serverService.getProducts(product.furniture_category_id)),
       catchError(err => of(err))
     ).subscribe(products => this.apiProducts = products);
+    this.modalService.dismissAll();
+  }
+
+  sortData(sort: Sort) {
+    const data = this.apiProducts.slice();
+    if (!sort.active || sort.direction === '') {
+      this.apiProducts = data;
+      return;
+    }
+
+    this.apiProducts = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id' : return compare(a.id, b.id, isAsc);
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'price': return compare(a.price, b.price, isAsc);
+        default: return 0;
+      }
+    });
+
+    function compare(a, b, isAsc) {
+      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
   }
 
 

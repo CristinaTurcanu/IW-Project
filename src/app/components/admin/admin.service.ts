@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { ICategory } from './../../models/category.model';
 import { ServerService } from './../../server-service';
 import { Product } from './../../models/product.model';
@@ -14,18 +15,12 @@ export class AdminService {
   cid: number;
   categoryUrl = 'http://iw-internship.herokuapp.com/api/v1/furniture-categories/';
 
-  constructor(private serverService: ServerService) {}
+  constructor(private serverService: ServerService) {
+  }
 
   getCategories() {
   this.serverService.getCategories()
     .subscribe(categories => this.apiCategories = categories);
-  }
-
-  getUpdatedProducts(cid) {
-    this.serverService.getProducts(cid).subscribe(
-      products => {
-      return this.apiProducts = products;
-    });
   }
 
   getProducts(cid) {

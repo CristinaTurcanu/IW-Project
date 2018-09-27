@@ -19,5 +19,4 @@ export class AdminComponent implements OnInit {
       return this.apiCategories = categories;
     });
   }
-
 }

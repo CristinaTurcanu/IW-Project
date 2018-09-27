@@ -1,8 +1,8 @@
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { switchMap, catchError } from 'rxjs/operators';
 import { ServerService } from './../../../server-service';
 import { AdminService } from './../admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
 
@@ -18,6 +18,7 @@ export class AdminProductComponent implements OnInit {
   cid: any;
   fid: any;
   editMode = false;
+  message: string;
   allAvailability = [
     { status: 'In Stock'},
     { status: 'Limited Stock'},
@@ -31,7 +32,7 @@ export class AdminProductComponent implements OnInit {
     description: ['', Validators.required],
     availability: ['In Stock', Validators.required],
     color: [''],
-    price: ['', [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]],
+    price: ['', [Validators.required, Validators.pattern(/[+-]?([0-9]*[.])?[0-9]+/)]],
     imageUrl: ['']
   });
 
@@ -84,29 +85,35 @@ export class AdminProductComponent implements OnInit {
     const form = this.productForm.getRawValue();
 
     if (this.editMode) {
-      this.adminService.updateProduct(this.cid, this.fid, form).subscribe(test => {
-        this.router.navigate(['../../'], {relativeTo: this.route });
-      });
+      this.message = 'You successfully updated the product';
+      setTimeout(() => {
+        this.adminService.updateProduct(this.cid, this.fid, form).subscribe(test => {
+          this.router.navigate(['../../'], {relativeTo: this.route });
+        });
 
-      this.adminService.getProducts(this.cid).pipe(
-        switchMap(res =>  this.serverService.getProducts(this.cid)),
-        catchError(err => of(err))
-      ).subscribe(products => this.apiProducts = products);
+        this.adminService.getProducts(this.cid).pipe(
+          switchMap(res =>  this.serverService.getProducts(this.cid)),
+          catchError(err => of(err))
+        ).subscribe(products => this.apiProducts = products);
+      }, 700);
 
     } else {
-      this.adminService.addNewProduct(this.cid, form).subscribe(test => {
-        this.router.navigate(['../'], {relativeTo: this.route });
-      });
+      this.message = 'You successfully added a new product';
+      setTimeout(() => {
+        this.adminService.addNewProduct(this.cid, form).subscribe(test => {
+          this.router.navigate(['../'], {relativeTo: this.route });
+        });
 
-      this.adminService.getProducts(this.cid).pipe(
-        switchMap(res =>  this.serverService.getProducts(this.cid)),
-        catchError(err => of(err))
-      ).subscribe(products => this.apiProducts = products);
+        this.adminService.getProducts(this.cid).pipe(
+          switchMap(res =>  this.serverService.getProducts(this.cid)),
+          catchError(err => of(err))
+        ).subscribe(products => this.apiProducts = products);
+      }, 700);
     }
   }
 
   onCancel() {
-    this.router.navigate(['../../'], {relativeTo: this.route });
+    this.router.navigate(['../'], {relativeTo: this.route });
   }
 
 }

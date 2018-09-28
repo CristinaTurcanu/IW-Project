@@ -1,13 +1,13 @@
-<!-- <ngb-alert *ngIf="message" type="success" (close)="message = null">{{ message }}</ngb-alert> -->
+<h4>Manage products</h4>
 <div class="table-responsive">
-  <table class="table table-hover"  matSort (matSortChange)="sortData($event)">
+  <table class="table table-hover" matSort (matSortChange)="sortData($event)">
     <thead>
       <tr>
         <th mat-sort-header="id" scope="col">Id</th>
         <th mat-sort-header="name" scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Availability</th>
-        <th mat-sort-header="price" scope="col">Price</th>
+        <th scope="col">Price</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
@@ -34,8 +34,8 @@
             <p>Do you want to proceed?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="deleteProduct(product)">Yes</button>
-            <button type="button" class="btn btn-outline-dark" (click)="close">No</button>
+            <button type="button" (click)="deleteProduct(product)">Yes</button>
+            <button type="button" (click)="close">No</button>
           </div>
         </ng-template>
       </tr>

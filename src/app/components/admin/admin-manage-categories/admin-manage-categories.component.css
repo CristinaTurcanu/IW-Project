@@ -17,6 +17,9 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+.modal-header button {
+  border: none;
+}
 .modal-body {
   padding: 5px 20px;
 }
@@ -29,7 +32,9 @@ button {
 }
 .modal-footer button{
   width: 50%;
+  padding: 5px 0;
+  margin: auto;
 }
-.modal-header button {
-  border: none;
+.modal-footer button:hover {
+  background-color: #666;
 }

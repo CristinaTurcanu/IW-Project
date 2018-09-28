@@ -37,6 +37,7 @@ import { ProductsStartComponent } from './components/products/products-start/pro
 import { AdminManageCategoriesComponent } from './components/admin/admin-manage-categories/admin-manage-categories.component';
 import { AdminProductComponent } from './components/admin/admin-product/admin-product.component';
 import { AdminCategoryComponent } from './components/admin/admin-category/admin-category.component';
+import { ToastMessagesComponent } from './components/admin/toast-messages/toast-messages.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { AdminCategoryComponent } from './components/admin/admin-category/admin-
     ProductsStartComponent,
     AdminManageCategoriesComponent,
     AdminProductComponent,
-    AdminCategoryComponent
+    AdminCategoryComponent,
+    ToastMessagesComponent
   ],
   imports: [
     BrowserModule,

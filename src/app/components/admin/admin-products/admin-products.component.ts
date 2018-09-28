@@ -4,9 +4,10 @@ import { ServerService } from './../../../server-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from './../../../models/product.model';
 import { Component, OnInit, Input } from '@angular/core';
-import { switchMap, catchError, debounceTime } from 'rxjs/operators';
-import { of, Subject } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { Sort } from '@angular/material';
+import { ToastService } from '../toast.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -18,17 +19,14 @@ export class AdminProductsComponent implements OnInit {
   @Input() product;
   sortedData;
   subscription;
-  private _success = new Subject<string>();
-
-  staticAlertClosed = false;
   message: string;
-
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private serverService: ServerService,
               private adminService: AdminService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private toast: ToastService) {
               }
 
   ngOnInit() {
@@ -38,16 +36,6 @@ export class AdminProductsComponent implements OnInit {
         cid = +params['cid'];
         this.getProducts(cid);
       });
-
-      this._success.subscribe((message) => this.message = message);
-      this._success.pipe(
-        debounceTime(7000)
-      ).subscribe(() => this.message = null);
-      if (this.getProducts) {}
-      this.changeSuccessMessage();
-  }
-  changeSuccessMessage() {
-    this._success.next('You successfully made a change');
   }
 
   getProducts(cid) {
@@ -89,7 +77,6 @@ export class AdminProductsComponent implements OnInit {
       switch (sort.active) {
         case 'id' : return compare(a.id, b.id, isAsc);
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'price': return compare(a.price, b.price, isAsc);
         default: return 0;
       }
     });
@@ -98,6 +85,4 @@ export class AdminProductsComponent implements OnInit {
       return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
     }
   }
-
-
 }

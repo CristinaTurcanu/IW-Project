@@ -19,7 +19,7 @@
 
         <ng-template #content let-close="close()" let-dismiss="dismiss()">
           <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Delete product</h4>
+            <h4 class="modal-title">Delete category</h4>
             <button type="button" class="close" aria-label="Close" (click)="dismiss">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -29,8 +29,8 @@
             <p>Do you want to proceed?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="deleteCategory(category)">Yes</button>
-            <button type="button" class="btn btn-outline-dark" (click)="close">No</button>
+            <button type="button" (click)="deleteCategory(category)">Yes</button>
+            <button type="button" (click)="close">No</button>
           </div>
         </ng-template>
       </tr>

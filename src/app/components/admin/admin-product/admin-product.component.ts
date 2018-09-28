@@ -3,8 +3,10 @@ import { ServerService } from './../../../server-service';
 import { AdminService } from './../admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { of } from 'rxjs';
+import { EventEmitter } from 'events';
+import { ToastService } from '../toast.service';
 
 @Component({
   selector: 'app-admin-product',
@@ -14,11 +16,9 @@ import { of } from 'rxjs';
 export class AdminProductComponent implements OnInit {
   apiCategories;
   apiProducts;
-  product: any;
   cid: any;
   fid: any;
   editMode = false;
-  message: string;
   allAvailability = [
     { status: 'In Stock'},
     { status: 'Limited Stock'},
@@ -40,7 +40,8 @@ export class AdminProductComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private adminService: AdminService,
-              private serverService: ServerService) {}
+              private serverService: ServerService,
+              private toast: ToastService) {}
 
   ngOnInit() {
     this.serverService.getCategories()
@@ -59,34 +60,26 @@ export class AdminProductComponent implements OnInit {
         this.editMode = params.fid || null;
 
         if (this.editMode) {
+          // Edit form
           this.getProduct(this.cid, this.fid);
+        } else {
+          // Add form
+          this.productForm.get('furniture_category_id').setValue(this.cid);
         }
-        this.initForm();
       });
   }
 
   getProduct(cid, fid) {
     this.serverService.getProduct(cid, fid)
     .subscribe(product => {
-      this.product = product;
-      this.initForm();
+      this.productForm.patchValue(product);
     });
-  }
-
-  private initForm() {
-    if (this.editMode) {
-      this.productForm.patchValue(this.product);
-    } else {
-      this.productForm.get('furniture_category_id').setValue(this.cid);
-    }
   }
 
   onSubmit() {
     const form = this.productForm.getRawValue();
 
     if (this.editMode) {
-      this.message = 'You successfully updated the product';
-      setTimeout(() => {
         this.adminService.updateProduct(this.cid, this.fid, form).subscribe(test => {
           this.router.navigate(['../../'], {relativeTo: this.route });
         });
@@ -95,11 +88,10 @@ export class AdminProductComponent implements OnInit {
           switchMap(res =>  this.serverService.getProducts(this.cid)),
           catchError(err => of(err))
         ).subscribe(products => this.apiProducts = products);
-      }, 700);
+
+        this.sendUpdateMessage();
 
     } else {
-      this.message = 'You successfully added a new product';
-      setTimeout(() => {
         this.adminService.addNewProduct(this.cid, form).subscribe(test => {
           this.router.navigate(['../'], {relativeTo: this.route });
         });
@@ -108,12 +100,20 @@ export class AdminProductComponent implements OnInit {
           switchMap(res =>  this.serverService.getProducts(this.cid)),
           catchError(err => of(err))
         ).subscribe(products => this.apiProducts = products);
-      }, 700);
+
+        this.sendAddMessage();
     }
   }
 
   onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.route });
+    this.router.navigate(['/admin', this.cid], {relativeTo: this.route });
   }
 
+  sendAddMessage() {
+    this.toast.sendMessage('You successfully added a new product');
+  }
+
+  sendUpdateMessage() {
+    this.toast.sendMessage('You successfully updated a product');
+  }
 }

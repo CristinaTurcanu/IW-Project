@@ -1,4 +1,3 @@
-import { Product } from './../../models/product.model';
 import { ServerService } from './../../server-service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
   apiCategories;
-  products: Product[];
 
   constructor(private serverService: ServerService) {}
 

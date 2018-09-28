@@ -13,8 +13,7 @@ export class AdminCategoriesComponent implements OnInit {
   apiProducts;
 
   constructor(private serverService: ServerService,
-              private router: Router,
-              private adminService: AdminService) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.serverService.getCategories()
@@ -24,6 +23,7 @@ export class AdminCategoriesComponent implements OnInit {
   }
 
   getProducts(cid) {
+    this.ngOnInit();
     this.serverService.getProducts(cid)
       .subscribe(products => {
         return this.apiProducts = products;
@@ -33,5 +33,4 @@ export class AdminCategoriesComponent implements OnInit {
   manageCategories() {
     this.router.navigate(['/admin/categories']);
   }
-
 }

@@ -10,8 +10,6 @@ export class ShoppingCartService {
   addToCart = true;
   totalQuantity: number;
 
-  // Every compoenent consuming the service receives the up-to date information,
-  // the behaviour subject hold the current value
   counterSource = new BehaviorSubject<number>(this.getTotalQuantity());
   currentCounterValue = this.counterSource.asObservable();
 
@@ -57,10 +55,6 @@ export class ShoppingCartService {
     return this.cart.products.indexOf(product);
   }
 
-  // deleteProduct(id: number) {
-  //   return this.cart.products = this.cart.products
-  //     .filter(product => product.id !== id);
-  // }
   deleteProduct(product) {
     this.cart.products.splice(this.findProductIndex(product), 1);
     return this.updateCart();

@@ -59,6 +59,7 @@ export class AdminCategoryComponent implements OnInit {
     } else {
         this.adminService.addNewcategory(form).subscribe(resp => this.onCancel());
         this.sendAddMessage();
+
     }
   }
 
@@ -74,5 +75,4 @@ export class AdminCategoryComponent implements OnInit {
   sendUpdateMessage() {
     this.toast.sendMessage('You successfully updated a category');
   }
-
 }

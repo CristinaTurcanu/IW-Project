@@ -1,21 +1,20 @@
 import { Product } from './../../../models/product.model';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WishlistService } from './../../wishlist/wishlist.service';
 import { ShoppingCartService } from './../../shopping-cart/shopping-cart.service';
 import { ServerService } from './../../../server-service';
-import { Router, ActivatedRoute } from '@angular/router';
-import {assign, map, isEqual} from 'lodash';
+import { ActivatedRoute } from '@angular/router';
+import { assign, map, isEqual } from 'lodash';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit, OnDestroy {
+export class ProductsListComponent implements OnInit {
   product: Product;
   cid: number;
   apiProducts;
-  subscription;
   pageTitle = '';
   message = 'were added to cart';
   counter: number;
@@ -37,7 +36,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     let cid = this.route.snapshot.paramMap.get['cid'];
-    this.subscription = this.route.params
+    this.route.params
       .subscribe(params => {
         // cid = +params['cid'];
         cid = parseInt(params['cid'], 10);
@@ -82,10 +81,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   addToWishlist(product: Product) {
     product.quantity = 1;
     this.wishService.addProduct(product);
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }
 

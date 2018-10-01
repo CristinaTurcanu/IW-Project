@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminModule } from './components/admin/admin.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastModule } from 'primeng/toast';
-import { MatSortModule } from '@angular/material/sort';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -29,15 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { InformationComponent } from './components/contact/information/information.component';
 import { LocationComponent } from './components/contact/location/location.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { AdminCategoriesComponent } from './components/admin/admin-categories/admin-categories.component';
-import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
-import { AdminStartComponent } from './components/admin/admin-start/admin-start.component';
 import { ProductsStartComponent } from './components/products/products-start/products-start.component';
-import { AdminManageCategoriesComponent } from './components/admin/admin-manage-categories/admin-manage-categories.component';
-import { AdminProductComponent } from './components/admin/admin-product/admin-product.component';
-import { AdminCategoryComponent } from './components/admin/admin-category/admin-category.component';
-import { ToastMessagesComponent } from './components/admin/toast-messages/toast-messages.component';
 
 @NgModule({
   declarations: [
@@ -62,26 +52,16 @@ import { ToastMessagesComponent } from './components/admin/toast-messages/toast-
     InformationComponent,
     LocationComponent,
     SignInComponent,
-    AdminComponent,
-    AdminCategoriesComponent,
-    AdminProductsComponent,
-    AdminStartComponent,
     ProductsStartComponent,
-    AdminManageCategoriesComponent,
-    AdminProductComponent,
-    AdminCategoryComponent,
-    ToastMessagesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AdminModule,
     AppRoutingModule,
-    NgbModule,
-    ToastModule,
-    MatSortModule,
-    BrowserAnimationsModule
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

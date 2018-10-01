@@ -13,6 +13,7 @@ export class WishlistService implements OnInit {
   constructor() {
     this.wishlist = JSON.parse(localStorage.getItem('wishlist')) || this.wishlist;
   }
+
   ngOnInit() {}
 
   getProducts() {

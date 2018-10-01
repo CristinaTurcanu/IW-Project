@@ -1,7 +1,7 @@
 import { Product } from '../../../models/product.model';
 import { ServerService } from '../../../server-service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ShoppingCartService } from '../../shopping-cart/shopping-cart.service';
 
 @Component({
@@ -19,7 +19,6 @@ export class ProductDetailsComponent implements OnInit {
   message = '';
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private serverService: ServerService,
               private cartService: ShoppingCartService) {}
 
@@ -43,19 +42,29 @@ export class ProductDetailsComponent implements OnInit {
       product => this.product = product
     );
   }
+
+  newCounterValue() {
+    this.cartService.getProducts();
+    this.cartService.changeCounterValue(this.cartService.getTotalQuantity());
+  }
+
   checkStatus() {
     if (this.product.availability === 'Out of Stock' || this.product.availability === 'Not Available') {
       return true;
     }
   }
+
   onQuantitySelected(value: number) {
     this.product.quantity = +value;
   }
+
   addToCart(product: Product) {
     if (!product.quantity) {
       this.product.quantity = 1;
     }
+
     this.cartService.addProduct(product);
     this.message = 'You added ' + this.product.quantity + ' piece(s)';
+    this.newCounterValue();
   }
 }

@@ -15,6 +15,11 @@ export class AdminService {
   cid: number;
   categoryUrl = 'http://iw-internship.herokuapp.com/api/v1/furniture-categories/';
 
+  categoriesSource = new BehaviorSubject<any>(
+    this.serverService.getCategories()
+  );
+  currentcategories = this.categoriesSource.asObservable();
+
   constructor(private serverService: ServerService) {
   }
 

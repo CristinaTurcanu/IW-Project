@@ -1,3 +1,4 @@
+<h4>Manage categories</h4>
 <div class="table-responsive">
   <table class="table table-hover" matSort (matSortChange)="sortData($event)">
     <thead>
@@ -33,6 +34,19 @@
             <button type="button" (click)="close">No</button>
           </div>
         </ng-template>
+
+        <ng-template #error let-close="close()" let-dismiss="dismiss()">
+            <div class="modal-header">
+              <h4 class="modal-title">Error</h4>
+              <button type="button" class="close" aria-label="Close" (click)="dismiss">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>You can not delete this category, because it contains products.</p>
+              <p>Try to delete the products first</p>
+            </div>
+          </ng-template>
       </tr>
     </tbody>
     <tfoot>

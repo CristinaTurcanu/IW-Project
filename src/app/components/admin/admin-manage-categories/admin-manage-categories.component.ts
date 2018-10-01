@@ -2,9 +2,9 @@ import { AdminService } from './../admin.service';
 import { ICategory } from './../../../models/category.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServerService } from './../../../server-service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { switchMap, catchError } from 'rxjs/operators';
-import { of, Subscription } from 'rxjs';
+import { of, Subscription, throwError } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Sort } from '@angular/material';
 
@@ -18,6 +18,7 @@ export class AdminManageCategoriesComponent implements OnInit {
   apiProducts;
   subscription: Subscription;
   sortedData;
+  @ViewChild('error') errorModal: TemplateRef<any>;
 
   constructor(private serverService: ServerService,
               private adminService: AdminService,
@@ -27,7 +28,10 @@ export class AdminManageCategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCategories();
+    this.serverService.getCategories()
+      .subscribe(categories => {
+        return this.apiCategories = categories;
+      });
   }
 
   getCategories() {
@@ -56,10 +60,17 @@ export class AdminManageCategoriesComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
+  private handleError(error: Response) {
+    this.modalService.open(this.errorModal, { centered: true });
+  }
+
   deleteCategory(category: ICategory) {
     this.adminService.deleteCategory(category.id).pipe(
       switchMap(res =>  this.serverService.getCategories()),
-      catchError(err => of(err))
+      catchError((err) => {
+        this.handleError(err);
+        return throwError(err);
+      })
     ).subscribe(categories => this.apiCategories = categories);
     this.modalService.dismissAll();
   }

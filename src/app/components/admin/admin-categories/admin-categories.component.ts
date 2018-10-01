@@ -13,7 +13,9 @@ export class AdminCategoriesComponent implements OnInit {
   apiProducts;
 
   constructor(private serverService: ServerService,
-              private router: Router) { }
+              private router: Router,
+              private adminService: AdminService) {
+  }
 
   ngOnInit() {
     this.serverService.getCategories()

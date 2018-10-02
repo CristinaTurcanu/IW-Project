@@ -73,6 +73,7 @@ export class AdminManageCategoriesComponent implements OnInit {
       })
     ).subscribe(categories => this.apiCategories = categories);
     this.modalService.dismissAll();
+    this.adminService.updateCategories(this.adminService.getCategories());
   }
 
   sortData(sort: Sort) {

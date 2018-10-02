@@ -2,6 +2,7 @@ import { AdminService } from './../admin.service';
 import { Router } from '@angular/router';
 import { ServerService } from './../../../server-service';
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from '../../../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-admin-categories',
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-categories.component.css']
 })
 export class AdminCategoriesComponent implements OnInit {
+  category;
   apiCategories;
   apiProducts;
 
@@ -21,15 +23,13 @@ export class AdminCategoriesComponent implements OnInit {
     this.serverService.getCategories()
     .subscribe(categories => {
       return this.apiCategories = categories;
-    });
-  }
+  });
 
-  getProducts(cid) {
-    this.ngOnInit();
-    this.serverService.getProducts(cid)
-      .subscribe(products => {
-        return this.apiProducts = products;
-      });
+    this.adminService.currentCategories.pipe(
+      switchMap(res => {
+        return this.serverService.getCategories();
+      })
+    ).subscribe(res => this.apiCategories = res);
   }
 
   manageCategories() {

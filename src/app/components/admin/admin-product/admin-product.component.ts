@@ -83,24 +83,14 @@ export class AdminProductComponent implements OnInit {
         this.adminService.updateProduct(this.cid, this.fid, form).subscribe(test => {
           this.router.navigate(['../../'], {relativeTo: this.route });
         });
-
-        this.adminService.getProducts(this.cid).pipe(
-          switchMap(res =>  this.serverService.getProducts(this.cid)),
-          catchError(err => of(err))
-        ).subscribe(products => this.apiProducts = products);
-
+        this.getProducts();
         this.sendUpdateMessage();
 
     } else {
         this.adminService.addNewProduct(this.cid, form).subscribe(test => {
           this.router.navigate(['../'], {relativeTo: this.route });
         });
-
-        this.adminService.getProducts(this.cid).pipe(
-          switchMap(res =>  this.serverService.getProducts(this.cid)),
-          catchError(err => of(err))
-        ).subscribe(products => this.apiProducts = products);
-
+        this.getProducts();
         this.sendAddMessage();
     }
   }
@@ -115,5 +105,12 @@ export class AdminProductComponent implements OnInit {
 
   sendUpdateMessage() {
     this.toast.sendMessage('You successfully updated a product');
+  }
+
+  getProducts() {
+    this.adminService.getProducts(this.cid).pipe(
+      switchMap(res =>  this.serverService.getProducts(this.cid)),
+      catchError(err => of(err))
+    ).subscribe(products => this.apiProducts = products);
   }
 }

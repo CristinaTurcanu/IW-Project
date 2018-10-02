@@ -3,11 +3,9 @@
 
   <button
     *ngFor="let category of apiCategories"
-    (click)="getProducts(category.id)"
     [routerLink]="['/admin', category.id]"
     routerLinkActive="active">
     {{ category.name }}
   </button>
 
-  <button class="btn btn-default" (click)="ngOnInit()">Refresh</button>
 </div>

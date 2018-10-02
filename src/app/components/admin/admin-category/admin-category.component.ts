@@ -59,12 +59,12 @@ export class AdminCategoryComponent implements OnInit {
     } else {
         this.adminService.addNewcategory(form).subscribe(resp => this.onCancel());
         this.sendAddMessage();
-
     }
   }
 
   onCancel() {
-    this.adminService.getCategories();
+    this.adminService.updateCategories(this.adminService.getCategories());
+    // this.adminService.getCategories();
     this.router.navigate(['/admin/categories']);
   }
 

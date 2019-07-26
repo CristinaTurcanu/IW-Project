@@ -18,7 +18,7 @@
         </select>
       </div>
 
-    <div class="overlay" [ngClass]="{added: product.favorite}" (click)= selectFavoriteProduct(product)>
+    <div class="overlay" [ngClass]="{added: product.favorite}" (click)="selectFavoriteProduct(product)">
       <i class="fa fa-heart" (click)="addToWishlist(this.product)"></i>
     </div>
 

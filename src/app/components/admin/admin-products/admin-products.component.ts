@@ -7,7 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Sort } from '@angular/material';
-import { ToastService } from '../toast.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -25,8 +24,7 @@ export class AdminProductsComponent implements OnInit {
               private router: Router,
               private serverService: ServerService,
               private adminService: AdminService,
-              private modalService: NgbModal,
-              private toast: ToastService) {
+              private modalService: NgbModal) {
               }
 
   ngOnInit() {

@@ -3,9 +3,8 @@ import { ServerService } from './../../../server-service';
 import { AdminService } from './../admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
-import { EventEmitter } from 'events';
 import { ToastService } from '../toast.service';
 
 @Component({
